@@ -2,6 +2,7 @@ plugins {
 	val kotlinVersion = "1.9.25"
 	kotlin("jvm") version kotlinVersion
 	kotlin("plugin.spring") version kotlinVersion
+	kotlin("plugin.serialization") version kotlinVersion
 	id("org.springframework.boot") version "3.4.1"
 	id("io.spring.dependency-management") version "1.1.7"
 }
@@ -22,13 +23,22 @@ repositories {
 val kotestRunner = project.findProperty("kotest.runner.junit5")
 val kotestAssertions = project.findProperty("kotest.assertions")
 val kotestExtensions = project.findProperty("kotest-extensions")
+val ktor = project.findProperty("ktor")
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
-	// ---
-	// TEST
+	// ---------------------------------- Util
+	// Ktor
+	implementation("io.ktor:ktor-client-core:$ktor")
+	implementation("io.ktor:ktor-client-cio:$ktor")
+	implementation("io.ktor:ktor-client-content-negotiation:$ktor")
+	implementation("io.ktor:ktor-client-logging:$ktor")
+	implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor")
+	implementation("io.ktor:ktor-serialization-kotlinx-xml:$ktor")
+
+	// ---------------------------------- TEST
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
