@@ -19,13 +19,23 @@ repositories {
 	mavenCentral()
 }
 
+val kotestRunner = project.findProperty("kotest.runner.junit5")
+val kotestAssertions = project.findProperty("kotest.assertions")
+val kotestExtensions = project.findProperty("kotest-extensions")
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+	// ---
+	// TEST
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	// KOTEST
+	testImplementation("io.kotest:kotest-runner-junit5:$kotestRunner")
+	testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestExtensions")
+	testImplementation("io.kotest:kotest-assertions-core:$kotestAssertions")
 }
 
 kotlin {
