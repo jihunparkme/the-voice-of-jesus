@@ -25,19 +25,20 @@ val kotestAssertions = project.findProperty("kotest.assertions")
 val kotestExtensions = project.findProperty("kotest-extensions")
 val springmockk = project.findProperty("springmockk")
 val ktor = project.findProperty("ktor")
+val jsoup = project.findProperty("jsoup")
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
 	// ---------------------------------- Util
-	// Ktor
 	implementation("io.ktor:ktor-client-core:$ktor")
 	implementation("io.ktor:ktor-client-cio:$ktor")
 	implementation("io.ktor:ktor-client-content-negotiation:$ktor")
 	implementation("io.ktor:ktor-client-logging:$ktor")
 	implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor")
 	implementation("io.ktor:ktor-serialization-kotlinx-xml:$ktor")
+	implementation("org.jsoup:jsoup:$jsoup")
 
 	// ---------------------------------- TEST
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
