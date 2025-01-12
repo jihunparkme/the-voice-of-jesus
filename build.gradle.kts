@@ -23,6 +23,7 @@ repositories {
 val kotestRunner = project.findProperty("kotest.runner.junit5")
 val kotestAssertions = project.findProperty("kotest.assertions")
 val kotestExtensions = project.findProperty("kotest-extensions")
+val springmockk = project.findProperty("springmockk")
 val ktor = project.findProperty("ktor")
 
 dependencies {
@@ -46,6 +47,8 @@ dependencies {
 	testImplementation("io.kotest:kotest-runner-junit5:$kotestRunner")
 	testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestExtensions")
 	testImplementation("io.kotest:kotest-assertions-core:$kotestAssertions")
+	// mockk
+	testImplementation("com.ninja-squad:springmockk:$springmockk")
 }
 
 kotlin {
