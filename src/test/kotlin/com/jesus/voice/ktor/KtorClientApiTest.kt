@@ -20,7 +20,7 @@ import io.ktor.serialization.kotlinx.xml.xml
 import kotlinx.serialization.Serializable
 import org.junit.jupiter.api.Test
 
-class KtorClientTest {
+class KtorClientApiTest {
     @Test
     fun ktorClientTest() {
         val client = HttpClient(CIO) {
