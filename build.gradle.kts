@@ -26,6 +26,8 @@ val kotestExtensions = project.findProperty("kotest-extensions")
 val springmockk = project.findProperty("springmockk")
 val ktor = project.findProperty("ktor")
 val jsoup = project.findProperty("jsoup")
+val fasterxml = project.findProperty("fasterxml")
+val kotlinLogging = project.findProperty("kotlin.logging")
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
@@ -39,6 +41,8 @@ dependencies {
 	implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor")
 	implementation("io.ktor:ktor-serialization-kotlinx-xml:$ktor")
 	implementation("org.jsoup:jsoup:$jsoup")
+	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$fasterxml")
+	implementation("io.github.microutils:kotlin-logging-jvm:$kotlinLogging")
 
 	// ---------------------------------- TEST
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
