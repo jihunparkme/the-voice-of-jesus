@@ -4,7 +4,6 @@ import com.jesus.voice.common.IntegrationTest
 import io.kotest.common.runBlocking
 import io.kotest.matchers.shouldBe
 import io.ktor.client.call.body
-import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import org.junit.jupiter.api.Test
 
@@ -15,7 +14,7 @@ class KtorClientTest(
     @Test
     fun extractYoutubeTranscript() {
         runBlocking {
-            val response: HttpResponse = ktorClient.client.get("https://jsonplaceholder.typicode.com/posts/1")
+            val response: HttpResponse = ktorClient.get("https://jsonplaceholder.typicode.com/posts/1")
 
             response.status.value shouldBe 200
             response.status.description shouldBe "OK"

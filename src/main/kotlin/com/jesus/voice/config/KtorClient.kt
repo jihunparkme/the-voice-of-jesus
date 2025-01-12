@@ -8,16 +8,19 @@ import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.request.get
 import io.ktor.client.request.header
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.serialization.kotlinx.xml.xml
+import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Component
 
 @Component
 class KtorClient {
-    val client = HttpClient(CIO) {
+    private val client = HttpClient(CIO) {
         install(ContentNegotiation) { // JSON, XML 데이터 직렬화 및 역직렬화 플러그인
             json()
             xml()
@@ -37,6 +40,12 @@ class KtorClient {
 
         install(HttpRequestRetry) { // 요청 실패 시 재시도
             retryOnException(maxRetries = 3)
+        }
+    }
+
+    fun get(url: String): HttpResponse {
+        return runBlocking {
+            client.get(url)
         }
     }
 }
