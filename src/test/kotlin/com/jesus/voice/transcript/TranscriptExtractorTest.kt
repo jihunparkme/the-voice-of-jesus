@@ -11,7 +11,7 @@ class TranscriptExtractorTest : BehaviorSpec({
         val resource = javaClass.classLoader.getResource("transcript/transcript.xml")
         val content = Files.readString(Paths.get(resource.toURI()))
 
-        When(" transcript 추출") {
+        When("transcript 추출") {
             val result = TranscriptExtractor.extractTranscript(content)
             result shouldBe """
                 [Music]
