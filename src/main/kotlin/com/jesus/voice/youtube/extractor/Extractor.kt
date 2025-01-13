@@ -21,7 +21,9 @@ object TranscriptUrlExtractor {
     fun extractTranscriptUrl(videoId: String, videoPageHtml: String): String {
         val videoDetailHtml = getVideoDetails(videoPageHtml)
         val videoDetailJson = parseJson(videoId, videoDetailHtml)
-        return videoDetailJson.get("captionTracks").toString()
+        return videoDetailJson["captionTracks"].map {
+            it["baseUrl"].asText()
+        }[0].toString()
     }
 
     private fun getVideoDetails(videoPageHtml: String): String {
@@ -30,7 +32,7 @@ object TranscriptUrlExtractor {
     }
 
     private fun parseJson(videoId: String, json: String): JsonNode {
-        val parsedJson = objectMapper.readTree(json).get("playerCaptionsTracklistRenderer")
+        val parsedJson = objectMapper.readTree(json)["playerCaptionsTracklistRenderer"]
         if (parsedJson.isNull or !parsedJson.has("captionTracks")) {
             throw TranscriptDisabledException(videoId)
         }
