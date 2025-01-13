@@ -6,17 +6,15 @@ import com.jesus.voice.common.exception.TranscriptDisabledException
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
 
-class TranscriptExtractor {
-    companion object {
-        fun extractTranscript(transcript: String): String =
-            Jsoup.parse(transcript, "", Parser.xmlParser())
-                .select("text")
-                .joinToString("\n") { it.text() }
-    }
+object TranscriptExtractor {
+    fun extractTranscript(transcript: String): String =
+        Jsoup.parse(transcript, "", Parser.xmlParser())
+            .select("text")
+            .joinToString("\n") { it.text() }
 }
 
 object TranscriptUrlExtractor {
-    var objectMapper: ObjectMapper = ObjectMapper()
+    private var objectMapper: ObjectMapper = ObjectMapper()
 
     fun extractTranscriptUrl(videoId: String, videoPageHtml: String): String {
         val videoDetailHtml = getVideoDetails(videoPageHtml)
