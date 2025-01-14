@@ -23,6 +23,16 @@ class YoutubeClient(
             logger.error("video page request exception. videoId: $videoId, error: ${it.message}", it)
         }.getOrElse { "" }
 
+    fun getTranscript(videoId: String, transcriptUrl: String): String =
+        runCatching {
+            runBlocking {
+                val response = ktorClient.get(transcriptUrl)
+                handleResponse(response, videoId)
+            }
+        }.onFailure {
+            logger.error("video page request exception. videoId: $videoId, error: ${it.message}", it)
+        }.getOrElse { "" }
+
     private suspend fun handleResponse(response: HttpResponse, videoId: String): String =
         if (response.status.isSuccess()) {
             response.body()
