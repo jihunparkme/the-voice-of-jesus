@@ -1,8 +1,7 @@
 package com.jesus.voice.common.exception
 
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
+import com.jesus.voice.common.util.logger
+import com.jesus.voice.youtube.dto.Const.YOUTUBE_WATCH_URL
 
 class TranscriptDisabledException(
     videoId: String,
@@ -10,9 +9,5 @@ class TranscriptDisabledException(
 ) : RuntimeException(message) {
     init {
         logger.error("$message url= $YOUTUBE_WATCH_URL$videoId")
-    }
-
-    companion object {
-        const val YOUTUBE_WATCH_URL: String = "https://www.youtube.com/watch?v="
     }
 }

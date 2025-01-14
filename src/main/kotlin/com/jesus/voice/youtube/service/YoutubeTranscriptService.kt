@@ -16,7 +16,6 @@ class YoutubeTranscriptService(
             val videoPage = youtubeClient.getVideoPage(videoId.id)
             val transcriptUrl = extractTranscriptUrl(videoId.id, videoPage)
             val transcriptXml = youtubeClient.getTranscript(videoId.id, transcriptUrl)
-
             TranscriptExtractor.extractTranscript(transcriptXml)
         }.onFailure {
             logger.error(
