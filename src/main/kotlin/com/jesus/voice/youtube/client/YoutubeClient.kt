@@ -2,6 +2,7 @@ package com.jesus.voice.youtube.client
 
 import com.jesus.voice.common.util.logger
 import com.jesus.voice.config.KtorClient
+import com.jesus.voice.youtube.dto.Const.YOUTUBE_PLAYLIST_URL
 import com.jesus.voice.youtube.dto.Const.YOUTUBE_WATCH_URL
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
@@ -35,11 +36,21 @@ class YoutubeClient(
             log.error("video page request exception. videoId: $videoId, error: ${it.message}", it)
         }.getOrElse { "" }
 
-    private suspend fun handleResponse(response: HttpResponse, videoId: String): String =
+    fun getPlayList(playListId: String): String =
+        runCatching {
+            runBlocking {
+                val response = ktorClient.get(YOUTUBE_PLAYLIST_URL + playListId)
+                handleResponse(response, playListId)
+            }
+        }.onFailure {
+            log.error("play list page request exception. playListId: $playListId, error: ${it.message}", it)
+        }.getOrElse { "" }
+
+    private suspend fun handleResponse(response: HttpResponse, id: String): String =
         if (response.status.isSuccess()) {
             response.body()
         } else {
-            log.error("Video page request failed. videoId: $videoId, status: ${response.status.value}")
+            log.error("youtube page request failed. id: $id, status: ${response.status.value}")
             ""
         }
 }
