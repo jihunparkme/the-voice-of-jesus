@@ -16,9 +16,9 @@ class YoutubeTranscriptService(
     fun getTranscript(videoId: VideoId): String =
         runCatching {
             val videoPage = youtubeClient.getVideoPage(videoId.id)
-            val transcriptUrl = extractTranscriptUrl(videoId.id, videoPage)
+            val transcriptUrl = extractTranscriptUrl(videoId.id, videoPage.getOrDefault(""))
             val transcriptXml = youtubeClient.getTranscript(videoId.id, transcriptUrl)
-            TranscriptExtractor.extractTranscript(transcriptXml)
+            TranscriptExtractor.extractTranscript(transcriptXml.getOrDefault(""))
         }.onFailure {
             log.error(
                 "YoutubeTranscriptService getTranscript exception. videoId: $videoId, error: ${it.message}",

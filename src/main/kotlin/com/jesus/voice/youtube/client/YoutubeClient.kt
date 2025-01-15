@@ -1,5 +1,6 @@
 package com.jesus.voice.youtube.client
 
+import com.jesus.voice.common.exception.YoutubeClientException
 import com.jesus.voice.common.util.logger
 import com.jesus.voice.config.KtorClient
 import com.jesus.voice.youtube.dto.Const.YOUTUBE_PLAYLIST_URL
@@ -16,25 +17,25 @@ class YoutubeClient(
 ) {
     private val log by logger()
 
-    fun getVideoPage(videoId: String): String =
+    fun getVideoPage(videoId: String): Result<String> =
         runCatching {
             runBlocking {
                 val response = ktorClient.get(YOUTUBE_WATCH_URL + videoId)
                 handleResponse(response, videoId)
             }
         }.onFailure {
-            log.error("video page request exception. videoId: $videoId, error: ${it.message}", it)
-        }.getOrElse { "" }
+            throw YoutubeClientException("videoId", videoId, it)
+        }
 
-    fun getTranscript(videoId: String, transcriptUrl: String): String =
+    fun getTranscript(videoId: String, transcriptUrl: String): Result<String> =
         runCatching {
             runBlocking {
                 val response = ktorClient.get(transcriptUrl)
                 handleResponse(response, videoId)
             }
         }.onFailure {
-            log.error("video page request exception. videoId: $videoId, error: ${it.message}", it)
-        }.getOrElse { "" }
+            throw YoutubeClientException("videoId", videoId, it)
+        }
 
     fun getPlayList(playListId: String): String =
         runCatching {
@@ -43,7 +44,7 @@ class YoutubeClient(
                 handleResponse(response, playListId)
             }
         }.onFailure {
-            log.error("play list page request exception. playListId: $playListId, error: ${it.message}", it)
+            throw YoutubeClientException("playListId", playListId, it)
         }.getOrElse { "" }
 
     private suspend fun handleResponse(response: HttpResponse, id: String): String =
