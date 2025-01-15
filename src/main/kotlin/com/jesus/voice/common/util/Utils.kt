@@ -1,5 +1,6 @@
 package com.jesus.voice.common.util
 
-import mu.KotlinLogging
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory.getLogger
 
-val logger = KotlinLogging.logger {}
+fun <A : Any> A.logger(): Lazy<Logger> = lazy { getLogger(this.javaClass) }

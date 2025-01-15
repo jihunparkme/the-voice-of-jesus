@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service
 class YoutubeTranscriptService(
     private val youtubeClient: YoutubeClient,
 ) {
+    private val log by logger()
+
     fun getTranscript(videoId: VideoId): String =
         runCatching {
             val videoPage = youtubeClient.getVideoPage(videoId.id)
@@ -18,7 +20,7 @@ class YoutubeTranscriptService(
             val transcriptXml = youtubeClient.getTranscript(videoId.id, transcriptUrl)
             TranscriptExtractor.extractTranscript(transcriptXml)
         }.onFailure {
-            logger.error(
+            log.error(
                 "YoutubeTranscriptService getTranscript exception. videoId: $videoId, error: ${it.message}",
                 it
             )

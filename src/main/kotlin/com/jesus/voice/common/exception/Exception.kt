@@ -7,7 +7,9 @@ class TranscriptDisabledException(
     videoId: String,
     message: String = "스크립트 사용이 중지된 동영상입니다."
 ) : RuntimeException(message) {
+    private val log by logger()
+
     init {
-        logger.error("$message url= $YOUTUBE_WATCH_URL$videoId")
+        log.error("$message url= $YOUTUBE_WATCH_URL$videoId")
     }
 }
