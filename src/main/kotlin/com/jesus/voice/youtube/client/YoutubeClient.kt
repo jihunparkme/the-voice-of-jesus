@@ -37,7 +37,7 @@ class YoutubeClient(
             throw YoutubeClientException("videoId", videoId, it)
         }
 
-    fun getPlayList(playListId: String): String =
+    fun getPlayList(playListId: String): Result<String> =
         runCatching {
             runBlocking {
                 val response = ktorClient.get(YOUTUBE_PLAYLIST_URL + playListId)
@@ -45,7 +45,7 @@ class YoutubeClient(
             }
         }.onFailure {
             throw YoutubeClientException("playListId", playListId, it)
-        }.getOrElse { "" }
+        }
 
     private suspend fun handleResponse(response: HttpResponse, id: String): String =
         if (response.status.isSuccess()) {
