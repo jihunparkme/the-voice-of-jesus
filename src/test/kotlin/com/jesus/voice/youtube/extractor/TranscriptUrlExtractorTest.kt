@@ -9,7 +9,7 @@ class TranscriptUrlExtractorTest : BehaviorSpec({
     Given("영상 페이지 컨텐츠가 전달되면") {
         val VIDEO_ID = "AA1234"
         val resource = javaClass.classLoader.getResource("html/video-page.html")
-        val content = Files.readString(Paths.get(resource.toURI()))
+        val content = Files.readString(Paths.get(resource!!.toURI()))
 
         When("transcript url 추출") {
             val result = TranscriptUrlExtractor.extractTranscriptUrl(VIDEO_ID, content)

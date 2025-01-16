@@ -43,3 +43,21 @@ object TranscriptExtractor {
             .select("text")
             .joinToString("\n") { it.text() }
 }
+
+object PlayListExtractor {
+    fun extractPlayList(playListId: String, playListHtml: String): String {
+        val playListDetailHtml = getPlayListDetail(playListId, playListHtml)
+        return parseJson(playListId, playListDetailHtml)
+    }
+
+    private fun getPlayListDetail(playListId: String, playListHtml: String): String {
+        val splitHtml = playListHtml.split("\"twoColumnBrowseResultsRenderer\":")
+        val playlistDetail = splitHtml[1].split(".\"frameworkUpdates\"")
+        return playlistDetail[0].replace("\n", "")
+    }
+
+    private fun parseJson(playListId: String, html: String): String {
+        val parsedJson = objectMapper.readTree(html)
+        return parsedJson.toString()
+    }
+}
