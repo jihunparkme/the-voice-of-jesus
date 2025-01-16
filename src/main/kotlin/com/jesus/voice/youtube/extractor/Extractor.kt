@@ -45,19 +45,36 @@ object TranscriptExtractor {
 }
 
 object PlayListExtractor {
-    fun extractPlayList(playListId: String, playListHtml: String): String {
-        val playListDetailHtml = getPlayListDetail(playListId, playListHtml)
-        return parseJson(playListId, playListDetailHtml)
-    }
+    fun extractPlayList(playListId: String, playListHtml: String): String =
+        runCatching {
+            val playListVideosHtml = getPlayListVideos(playListHtml)
+            return parseJson(playListVideosHtml)
+        }.onFailure {
+            throw Exception()
+        }.getOrDefault("")
 
-    private fun getPlayListDetail(playListId: String, playListHtml: String): String {
+    private fun getPlayListVideos(playListHtml: String): String {
         val splitHtml = playListHtml.split("\"twoColumnBrowseResultsRenderer\":")
-        val playlistDetail = splitHtml[1].split(".\"frameworkUpdates\"")
-        return playlistDetail[0].replace("\n", "")
+        val playlistVideosHtml = splitHtml[1].split(".\"frameworkUpdates\"")
+        return playlistVideosHtml[0].replace("\n", "")
     }
 
-    private fun parseJson(playListId: String, html: String): String {
+    private fun parseJson(html: String): String {
         val parsedJson = objectMapper.readTree(html)
-        return parsedJson.toString()
+        val get = parsedJson["tabs"]
+            ?.firstOrNull()?.get("tabRenderer")
+            ?.get("content")?.get("sectionListRenderer")
+            ?.get("contents")?.firstOrNull()
+            ?.get("itemSectionRenderer")?.get("contents")?.firstOrNull()
+            ?.get("playlistVideoListRenderer")
+            ?.get("contents")?.forEach {
+                // println(it)
+                val video = it.get("playlistVideoRenderer")
+                println("videoId: " + video?.get("videoId"))
+                val thumbnails = video?.get("thumbnail")
+                println("thumbnail: " + thumbnails?.last())
+                println()
+            }
+        return get.toString()
     }
 }

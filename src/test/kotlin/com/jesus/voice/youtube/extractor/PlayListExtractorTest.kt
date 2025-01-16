@@ -11,6 +11,5 @@ class PlayListExtractorTest {
         val resource = javaClass.classLoader.getResource("html/play-list.html")
         val playListHtml = Files.readString(Paths.get(resource!!.toURI()))
         val respnse = PlayListExtractor.extractPlayList(playListId, playListHtml)
-        println(respnse)
     }
 }
