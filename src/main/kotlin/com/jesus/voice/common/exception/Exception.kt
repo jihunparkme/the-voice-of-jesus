@@ -21,3 +21,7 @@ class YoutubeClientException(
         message = "$message $type: $id, " + "error: ${throwable.message ?: ""}"
     }
 }
+
+class YoutubeTranscriptException(
+    message: String,
+) : RuntimeException(message)
