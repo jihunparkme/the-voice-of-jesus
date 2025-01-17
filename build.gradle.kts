@@ -18,6 +18,9 @@ java {
 
 repositories {
 	mavenCentral()
+	maven {
+		url = uri("https://jitpack.io")
+	}
 }
 
 val kotestRunner = project.findProperty("kotest.runner.junit5")
@@ -28,6 +31,7 @@ val ktor = project.findProperty("ktor")
 val jsoup = project.findProperty("jsoup")
 val fasterxml = project.findProperty("fasterxml")
 val kotlinLogging = project.findProperty("kotlin.logging")
+val komoran = project.findProperty("komoran")
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
@@ -43,6 +47,8 @@ dependencies {
 	implementation("org.jsoup:jsoup:$jsoup")
 	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$fasterxml")
 	implementation("io.github.microutils:kotlin-logging-jvm:$kotlinLogging")
+	implementation("com.github.shin285:KOMORAN:$komoran")
+
 
 	// ---------------------------------- TEST
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
