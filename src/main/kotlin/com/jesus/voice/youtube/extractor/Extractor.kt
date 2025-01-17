@@ -79,6 +79,7 @@ object PlayListExtractor {
                     publisher = video?.get("shortBylineText")?.get("runs")?.first()?.get("text")?.asText() ?: "",
                     streamingTime = video?.get("lengthText")?.get("simpleText")?.asText() ?: "",
                     uploadedDate = title.split("_").last(),
+                    beforeDate = video?.get("videoInfo")?.get("runs")?.last()?.get("text")?.asText()?.split(": ")?.last() ?: "",
                 )
             }.orEmpty()
     }

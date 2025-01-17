@@ -23,5 +23,6 @@ class PlayListExtractorTest {
         first.publisher shouldBe "안양감리교회"
         first.streamingTime shouldBe "34:25"
         first.uploadedDate shouldBe "2025.1.12"
+        first.beforeDate shouldBe "4일 전"
     }
 }

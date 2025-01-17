@@ -21,4 +21,5 @@ data class PlayListVideo(
     val publisher: String,
     val streamingTime: String,
     val uploadedDate: String,
+    val beforeDate: String,
 )
