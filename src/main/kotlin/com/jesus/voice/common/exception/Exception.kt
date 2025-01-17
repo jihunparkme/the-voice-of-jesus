@@ -25,3 +25,13 @@ class YoutubeClientException(
 class YoutubeTranscriptException(
     message: String,
 ) : RuntimeException(message)
+
+class YoutubePlayListExtractException(
+    playListId: String,
+    throwable: Throwable,
+    override var message: String = "failed playlist extraction."
+) : RuntimeException(message) {
+    init {
+        message = "$message playListId: $playListId, " + "error: ${throwable.message ?: ""}"
+    }
+}

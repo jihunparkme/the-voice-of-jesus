@@ -2,7 +2,9 @@ package com.jesus.voice.youtube.extractor
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.jesus.voice.common.exception.TranscriptDisabledException
+import com.jesus.voice.common.exception.YoutubePlayListExtractException
 import com.jesus.voice.youtube.dto.Const.objectMapper
+import com.jesus.voice.youtube.dto.PlayListVideo
 import com.jesus.voice.youtube.dto.Transcript
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
@@ -45,13 +47,13 @@ object TranscriptExtractor {
 }
 
 object PlayListExtractor {
-    fun extractPlayList(playListId: String, playListHtml: String): String =
+    fun extractPlayList(playListId: String, playListHtml: String): List<PlayListVideo> =
         runCatching {
             val playListVideosHtml = getPlayListVideos(playListHtml)
             return parseJson(playListVideosHtml)
         }.onFailure {
-            throw Exception()
-        }.getOrDefault("")
+            throw YoutubePlayListExtractException(playListId, it)
+        }.getOrDefault(emptyList())
 
     private fun getPlayListVideos(playListHtml: String): String {
         val splitHtml = playListHtml.split("\"twoColumnBrowseResultsRenderer\":")
@@ -59,22 +61,25 @@ object PlayListExtractor {
         return playlistVideosHtml[0].replace("\n", "")
     }
 
-    private fun parseJson(html: String): String {
+    private fun parseJson(html: String): List<PlayListVideo> {
         val parsedJson = objectMapper.readTree(html)
-        val get = parsedJson["tabs"]
+        return parsedJson["tabs"]
             ?.firstOrNull()?.get("tabRenderer")
             ?.get("content")?.get("sectionListRenderer")
             ?.get("contents")?.firstOrNull()
             ?.get("itemSectionRenderer")?.get("contents")?.firstOrNull()
             ?.get("playlistVideoListRenderer")
-            ?.get("contents")?.forEach {
-                // println(it)
+            ?.get("contents")?.map() {
                 val video = it.get("playlistVideoRenderer")
-                println("videoId: " + video?.get("videoId"))
-                val thumbnails = video?.get("thumbnail")
-                println("thumbnail: " + thumbnails?.last())
-                println()
-            }
-        return get.toString()
+                val title = video?.get("title")?.get("runs")?.first()?.get("text")?.asText() ?: ""
+                PlayListVideo(
+                    videoId = video?.get("videoId")?.asText() ?: "",
+                    thumbnailUrl = video?.get("thumbnail")?.last()?.last()?.get("url")?.asText() ?: "",
+                    title = title,
+                    publisher = video?.get("shortBylineText")?.get("runs")?.first()?.get("text")?.asText() ?: "",
+                    streamingTime = video?.get("lengthText")?.get("simpleText")?.asText() ?: "",
+                    uploadedDate = title.split("_").last(),
+                )
+            }.orEmpty()
     }
 }

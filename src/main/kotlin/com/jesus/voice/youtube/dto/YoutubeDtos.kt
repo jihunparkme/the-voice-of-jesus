@@ -13,3 +13,12 @@ data class Transcript(
     val name: String,
     val languageCode: String,
 )
+
+data class PlayListVideo(
+    val videoId: String,
+    val thumbnailUrl: String,
+    val title: String,
+    val publisher: String,
+    val streamingTime: String,
+    val uploadedDate: String,
+)
