@@ -22,4 +22,6 @@ data class PlayListVideo(
     val streamingTime: String,
     val uploadedDate: String,
     val beforeDate: String,
+    val transcript: String = "",
+    val summary: String = "",
 )
