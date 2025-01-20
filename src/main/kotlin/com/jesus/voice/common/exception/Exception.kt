@@ -44,3 +44,12 @@ class YoutubeClientResponseFailException(
         message = "$message $status"
     }
 }
+
+class WordCountClientException(
+    throwable: Throwable,
+    override var message: String = "wordcount page request exception."
+) : RuntimeException(message) {
+    init {
+        message = "$message error: ${throwable.message ?: ""}"
+    }
+}

@@ -65,7 +65,7 @@ class KtorClient {
     }
 
     @Throws(YoutubeClientResponseFailException::class)
-    suspend fun handleResponse(response: HttpResponse, msg: String): String =
+    suspend fun handleResponse(response: HttpResponse): String =
         if (response.status.isSuccess()) {
             response.body()
         } else {

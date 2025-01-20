@@ -16,7 +16,7 @@ class YoutubeClient(
         runCatching {
             runBlocking {
                 val response = ktorClient.get(YOUTUBE_WATCH_URL + videoId)
-                ktorClient.handleResponse(response, videoId)
+                ktorClient.handleResponse(response)
             }
         }.onFailure {
             throw YoutubeClientException("videoId", videoId, it)
@@ -27,7 +27,7 @@ class YoutubeClient(
         runCatching {
             runBlocking {
                 val response = ktorClient.get(transcriptUrl)
-                ktorClient.handleResponse(response, videoId)
+                ktorClient.handleResponse(response)
             }
         }.onFailure {
             throw YoutubeClientException("videoId", videoId, it)
