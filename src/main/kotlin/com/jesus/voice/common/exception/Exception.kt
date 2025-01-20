@@ -35,3 +35,12 @@ class YoutubePlayListExtractException(
         message = "$message playListId: $playListId, " + "error: ${throwable.message ?: ""}"
     }
 }
+
+class YoutubeClientResponseFailException(
+    status: Int,
+    override var message: String = "youtube page request failed.",
+) : RuntimeException(message) {
+    init {
+        message = "$message $status"
+    }
+}

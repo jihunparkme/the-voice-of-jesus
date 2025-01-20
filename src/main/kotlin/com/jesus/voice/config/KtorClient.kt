@@ -1,6 +1,8 @@
 package com.jesus.voice.config
 
+import com.jesus.voice.common.exception.YoutubeClientResponseFailException
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpRequestRetry
@@ -10,9 +12,13 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.client.request.header
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
+import io.ktor.http.contentType
+import io.ktor.http.isSuccess
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.serialization.kotlinx.xml.xml
 import kotlinx.coroutines.runBlocking
@@ -48,4 +54,21 @@ class KtorClient {
             client.get(url)
         }
     }
+
+    fun post(url: String, body: Any): HttpResponse {
+        return runBlocking {
+            client.post(url) {
+                contentType(ContentType.Application.Json)
+                setBody(body)
+            }
+        }
+    }
+
+    @Throws(YoutubeClientResponseFailException::class)
+    suspend fun handleResponse(response: HttpResponse, msg: String): String =
+        if (response.status.isSuccess()) {
+            response.body()
+        } else {
+            throw YoutubeClientResponseFailException(response.status.value)
+        }
 }
