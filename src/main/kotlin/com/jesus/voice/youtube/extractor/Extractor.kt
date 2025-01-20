@@ -8,6 +8,7 @@ import com.jesus.voice.youtube.dto.PlayListVideo
 import com.jesus.voice.youtube.dto.Transcript
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
+import kotlin.jvm.Throws
 
 object TranscriptUrlExtractor {
     fun extractTranscriptUrl(videoId: String, videoPageHtml: String): String {
@@ -30,6 +31,7 @@ object TranscriptUrlExtractor {
         return splitHtml[1].split(",\"videoDetails")[0].replace("\n", "")
     }
 
+    @Throws(TranscriptDisabledException::class)
     private fun parseJson(videoId: String, html: String): JsonNode {
         val parsedJson = objectMapper.readTree(html)["playerCaptionsTracklistRenderer"]
         if (parsedJson.isNull or !parsedJson.has("captionTracks")) {
@@ -47,6 +49,7 @@ object TranscriptExtractor {
 }
 
 object PlayListExtractor {
+    @Throws(YoutubePlayListExtractException::class)
     fun extractPlayList(playListId: String, playListHtml: String): List<PlayListVideo> =
         runCatching {
             val playListVideosHtml = getPlayListVideos(playListHtml)

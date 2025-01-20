@@ -1,13 +1,9 @@
 package com.jesus.voice.youtube.client
 
 import com.jesus.voice.common.exception.YoutubeClientException
-import com.jesus.voice.common.util.logger
 import com.jesus.voice.config.KtorClient
 import com.jesus.voice.youtube.dto.Const.YOUTUBE_PLAYLIST_URL
 import com.jesus.voice.youtube.dto.Const.YOUTUBE_WATCH_URL
-import io.ktor.client.call.body
-import io.ktor.client.statement.HttpResponse
-import io.ktor.http.isSuccess
 import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Component
 
@@ -15,43 +11,36 @@ import org.springframework.stereotype.Component
 class YoutubeClient(
     private val ktorClient: KtorClient,
 ) {
-    private val log by logger()
-
+    @Throws(YoutubeClientException::class)
     fun getVideoPage(videoId: String): Result<String> =
         runCatching {
             runBlocking {
                 val response = ktorClient.get(YOUTUBE_WATCH_URL + videoId)
-                handleResponse(response, videoId)
+                ktorClient.handleResponse(response, videoId)
             }
         }.onFailure {
             throw YoutubeClientException("videoId", videoId, it)
         }
 
+    @Throws(YoutubeClientException::class)
     fun getTranscript(videoId: String, transcriptUrl: String): Result<String> =
         runCatching {
             runBlocking {
                 val response = ktorClient.get(transcriptUrl)
-                handleResponse(response, videoId)
+                ktorClient.handleResponse(response, videoId)
             }
         }.onFailure {
             throw YoutubeClientException("videoId", videoId, it)
         }
 
+    @Throws(YoutubeClientException::class)
     fun getPlayList(playListId: String): Result<String> =
         runCatching {
             runBlocking {
                 val response = ktorClient.get(YOUTUBE_PLAYLIST_URL + playListId)
-                handleResponse(response, playListId)
+                ktorClient.handleResponse(response)
             }
         }.onFailure {
             throw YoutubeClientException("playListId", playListId, it)
-        }
-
-    private suspend fun handleResponse(response: HttpResponse, id: String): String =
-        if (response.status.isSuccess()) {
-            response.body()
-        } else {
-            log.error("youtube page request failed. id: $id, status: ${response.status.value}")
-            ""
         }
 }

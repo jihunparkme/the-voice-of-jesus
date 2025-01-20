@@ -7,6 +7,7 @@ import com.jesus.voice.youtube.dto.VideoId
 import com.jesus.voice.youtube.extractor.TranscriptExtractor
 import com.jesus.voice.youtube.extractor.TranscriptUrlExtractor.extractTranscriptUrl
 import org.springframework.stereotype.Service
+import kotlin.jvm.Throws
 
 @Service
 class YoutubeTranscriptService(
@@ -14,6 +15,7 @@ class YoutubeTranscriptService(
 ) {
     private val log by logger()
 
+    @Throws(YoutubeTranscriptException::class)
     fun getTranscript(videoId: VideoId): Result<String> =
         runCatching {
             val videoPage = youtubeClient.getVideoPage(videoId.id)
