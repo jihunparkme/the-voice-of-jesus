@@ -49,7 +49,6 @@ dependencies {
 	implementation("io.github.microutils:kotlin-logging-jvm:$kotlinLogging")
 	implementation("com.github.shin285:KOMORAN:$komoran")
 
-
 	// ---------------------------------- TEST
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
