@@ -36,6 +36,7 @@ val komoran = project.findProperty("komoran")
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 
 	// ---------------------------------- Util
 	implementation("io.ktor:ktor-client-core:$ktor")
