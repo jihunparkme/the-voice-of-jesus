@@ -1,5 +1,6 @@
 package com.jesus.voice.common.exception
 
+import com.jesus.voice.config.ErrorResponse
 import com.jesus.voice.youtube.dto.Const.YOUTUBE_WATCH_URL
 
 class TranscriptDisabledException(
@@ -36,15 +37,6 @@ class YoutubePlayListExtractException(
     }
 }
 
-class YoutubeClientResponseFailException(
-    status: Int,
-    override var message: String = "youtube page request failed.",
-) : RuntimeException(message) {
-    init {
-        message = "$message $status"
-    }
-}
-
 class WordCountClientException(
     throwable: Throwable,
     override var message: String = "wordcount page request exception."
@@ -53,3 +45,8 @@ class WordCountClientException(
         message = "$message error: ${throwable.message ?: ""}"
     }
 }
+
+class ApiException(
+    val errorResponse: ErrorResponse,
+    val code: Int,
+) : RuntimeException()
