@@ -68,7 +68,7 @@ sealed class ResponseResult<out T> {
             is Success -> body
             is Failure -> {
                 when {
-                    errorResponse.status.isClientError() -> throw ApiException(
+                    HttpStatus.valueOf(errorResponse.code).is4xxClientError -> throw ApiException(
                         errorResponse = errorResponse,
                         code = BAD_REQUEST.value()
                     )
@@ -95,9 +95,6 @@ sealed class ResponseResult<out T> {
  */
 data class ErrorResponse(
     val message: String,
-    val code: String,
-    val status: Int
+    val code: Int,
+    val responseBody: String? = null,
 )
-
-private fun Int.isClientError(): Boolean =
-    HttpStatus.valueOf(this).is4xxClientError
