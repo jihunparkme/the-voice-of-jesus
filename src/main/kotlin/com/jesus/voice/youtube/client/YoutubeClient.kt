@@ -1,7 +1,8 @@
 package com.jesus.voice.youtube.client
 
-import com.jesus.voice.common.exception.YoutubeClientException
 import com.jesus.voice.config.KtorClient
+import com.jesus.voice.config.ResponseResult
+import com.jesus.voice.config.responseResult
 import com.jesus.voice.youtube.dto.Const.YOUTUBE_PLAYLIST_URL
 import com.jesus.voice.youtube.dto.Const.YOUTUBE_WATCH_URL
 import kotlinx.coroutines.runBlocking
@@ -11,36 +12,21 @@ import org.springframework.stereotype.Component
 class YoutubeClient(
     private val ktorClient: KtorClient,
 ) {
-    @Throws(YoutubeClientException::class)
-    fun getVideoPage(videoId: String): Result<String> =
-        runCatching {
-            runBlocking {
-                val response = ktorClient.get(YOUTUBE_WATCH_URL + videoId)
-                ktorClient.handleResponse(response)
-            }
-        }.onFailure {
-            throw YoutubeClientException("videoId", videoId, it)
+    fun getVideoPage(videoId: String): ResponseResult<String> =
+        runBlocking {
+            ktorClient.get(YOUTUBE_WATCH_URL + videoId)
+                .responseResult<String>()
         }
 
-    @Throws(YoutubeClientException::class)
-    fun getTranscript(videoId: String, transcriptUrl: String): Result<String> =
-        runCatching {
-            runBlocking {
-                val response = ktorClient.get(transcriptUrl)
-                ktorClient.handleResponse(response)
-            }
-        }.onFailure {
-            throw YoutubeClientException("videoId", videoId, it)
+    fun getTranscript(videoId: String, transcriptUrl: String): ResponseResult<String> =
+        runBlocking {
+            ktorClient.get(transcriptUrl)
+                .responseResult<String>()
         }
 
-    @Throws(YoutubeClientException::class)
-    fun getPlayList(playListId: String): Result<String> =
-        runCatching {
-            runBlocking {
-                val response = ktorClient.get(YOUTUBE_PLAYLIST_URL + playListId)
-                ktorClient.handleResponse(response)
-            }
-        }.onFailure {
-            throw YoutubeClientException("playListId", playListId, it)
+    fun getPlayList(playListId: String): ResponseResult<String> =
+        runBlocking {
+            ktorClient.get(YOUTUBE_PLAYLIST_URL + playListId)
+                .responseResult<String>()
         }
 }
