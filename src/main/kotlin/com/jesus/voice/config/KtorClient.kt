@@ -28,7 +28,10 @@ import org.springframework.stereotype.Component
 class KtorClient {
     private val client = HttpClient(CIO) {
         install(ContentNegotiation) { // JSON, XML 데이터 직렬화 및 역직렬화 플러그인
-            json()
+            json(Json {
+                prettyPrint = true
+                ignoreUnknownKeys = true
+            })
             xml()
         }
 
