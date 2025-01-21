@@ -10,9 +10,8 @@ class YoutubeTranscriptServiceTest(
     private val youtubeTranscriptService: YoutubeTranscriptService,
 ) : BehaviorSpec({
     given("비디오 아이디를 전달해서 자막을 요청할 경우") {
-        val videoId = "ekr2nIex040"
-
         When("자막이 있는 영상이라면") {
+            val videoId = "ekr2nIex040"
             val result = youtubeTranscriptService.getTranscript(VideoId(videoId))
 
             Then("자막이 추출된다") {

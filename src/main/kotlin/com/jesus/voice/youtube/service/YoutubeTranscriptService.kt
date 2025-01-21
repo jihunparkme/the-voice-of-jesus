@@ -15,14 +15,14 @@ class YoutubeTranscriptService(
     private val log by logger()
 
     @Throws(YoutubeTranscriptException::class)
-    fun getTranscript(videoId: VideoId): Result<String> =
+    fun getTranscript(videoId: VideoId): String =
         runCatching {
-            val videoPage = youtubeClient.getVideoPage(videoId.id)
-            val transcriptUrl = extractTranscriptUrl(videoId.id, videoPage.getOrThrow())
-            val transcriptXml = youtubeClient.getTranscript(videoId.id, transcriptUrl)
-            TranscriptExtractor.extractTranscript(transcriptXml.getOrThrow())
+            val videoPage = youtubeClient.getVideoPage(videoId.id).getOrThrow()
+            val transcriptUrl = extractTranscriptUrl(videoId.id, videoPage)
+            val transcriptXml = youtubeClient.getTranscript(videoId.id, transcriptUrl).getOrThrow()
+            TranscriptExtractor.extractTranscript(transcriptXml)
         }.onFailure {
             log.error(it.message, it)
             throw YoutubeTranscriptException("동영상 자막 추출에 실패하였습니다. videoId: $videoId")
-        }
+        }.getOrDefault("")
 }
