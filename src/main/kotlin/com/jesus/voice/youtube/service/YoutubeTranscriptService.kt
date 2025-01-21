@@ -7,7 +7,6 @@ import com.jesus.voice.youtube.dto.VideoId
 import com.jesus.voice.youtube.extractor.TranscriptExtractor
 import com.jesus.voice.youtube.extractor.TranscriptUrlExtractor.extractTranscriptUrl
 import org.springframework.stereotype.Service
-import kotlin.jvm.Throws
 
 @Service
 class YoutubeTranscriptService(
@@ -19,9 +18,9 @@ class YoutubeTranscriptService(
     fun getTranscript(videoId: VideoId): Result<String> =
         runCatching {
             val videoPage = youtubeClient.getVideoPage(videoId.id)
-            val transcriptUrl = extractTranscriptUrl(videoId.id, videoPage.getOrDefault(""))
+            val transcriptUrl = extractTranscriptUrl(videoId.id, videoPage.getOrThrow())
             val transcriptXml = youtubeClient.getTranscript(videoId.id, transcriptUrl)
-            TranscriptExtractor.extractTranscript(transcriptXml.getOrDefault(""))
+            TranscriptExtractor.extractTranscript(transcriptXml.getOrThrow())
         }.onFailure {
             log.error(it.message, it)
             throw YoutubeTranscriptException("동영상 자막 추출에 실패하였습니다. videoId: $videoId")

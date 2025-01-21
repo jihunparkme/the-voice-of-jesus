@@ -72,8 +72,10 @@ sealed class ResponseResult<out T> {
                         errorResponse = errorResponse,
                         code = BAD_REQUEST.value()
                     )
-
-                    else -> throw ApiException(errorResponse = errorResponse, code = INTERNAL_SERVER_ERROR.value())
+                    else -> throw ApiException(
+                        errorResponse = errorResponse,
+                        code = INTERNAL_SERVER_ERROR.value()
+                    )
                 }
             }
         }

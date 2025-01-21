@@ -12,18 +12,11 @@ class TranscriptDisabledException(
     }
 }
 
-class YoutubeClientException(
-    type: String,
-    id: String,
-    throwable: Throwable,
-    override var message: String = "youtube page request exception."
-) : RuntimeException(message) {
-    init {
-        message = "$message $type: $id, " + "error: ${throwable.message ?: ""}"
-    }
-}
-
 class YoutubeTranscriptException(
+    message: String,
+) : RuntimeException(message)
+
+class WordCountException(
     message: String,
 ) : RuntimeException(message)
 
