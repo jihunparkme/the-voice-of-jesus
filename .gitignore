@@ -39,3 +39,7 @@ out/
 ### Custom ###
 .DS_Store
 .sdkmanrc
+
+### application
+application-real.yml
+application-ai.yml
