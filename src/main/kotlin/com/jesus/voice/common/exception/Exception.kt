@@ -20,6 +20,10 @@ class WordCountException(
     message: String,
 ) : RuntimeException(message)
 
+class GeminiChatException(
+    message: String,
+) : RuntimeException(message)
+
 class YoutubePlayListExtractException(
     playListId: String,
     throwable: Throwable,
