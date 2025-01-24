@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  thymeleaf:
+    cache: 'false'
+
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        nodeValue: info # basic log level for all messages
+        stat: debug # Statistics and slow queries
+        SQL_SLOW: info # Statistics and slow queries
+        SQL: debug # SQL statements and parameters
+        cache: debug # 2nd Level Cache
+        orm:
+          jdbc:
+            bind: trace # SQL statements and parameters
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /management/actuator
