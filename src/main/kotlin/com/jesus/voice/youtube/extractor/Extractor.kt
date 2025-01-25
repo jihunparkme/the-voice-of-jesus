@@ -12,7 +12,7 @@ import kotlin.jvm.Throws
 
 object TranscriptUrlExtractor {
     fun extractTranscriptUrl(videoId: String, videoPageHtml: String): String {
-        val videoDetailHtml = getVideoDetails(videoPageHtml)
+        val videoDetailHtml = getVideoDetails(videoId, videoPageHtml)
         val videoDetailJson = parseJson(videoId, videoDetailHtml)
         val transcriptList = videoDetailJson["captionTracks"].map {
             Transcript(
@@ -26,10 +26,12 @@ object TranscriptUrlExtractor {
             ?: transcriptList.first().baseUrl
     }
 
-    private fun getVideoDetails(html: String): String {
-        val splitHtml = html.split("\"captions\":")
-        return splitHtml[1].split(",\"videoDetails")[0].replace("\n", "")
-    }
+    private fun getVideoDetails(videoId: String, html: String): String =
+        html.split("\"captions\":")
+            .getOrNull(1)
+            ?.substringBefore(",\"videoDetails")
+            ?.replace("\n", "")
+            ?: throw TranscriptDisabledException(videoId)
 
     @Throws(TranscriptDisabledException::class)
     private fun parseJson(videoId: String, html: String): JsonNode {
