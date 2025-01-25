@@ -13,5 +13,4 @@ class SermonVideoExtractorTest(
     fun extract_sermon_video() {
         sermonVideoExtractor.runScheduler()
     }
-
 }

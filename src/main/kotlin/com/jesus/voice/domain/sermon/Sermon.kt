@@ -11,6 +11,7 @@ class Sermon(
     val videoId: String,
     val thumbnailUrl: String,
     val title: String,
+    val channel: Channel,
     val publisher: String,
     val streamingTime: String,
     val uploadedDate: String,
@@ -18,4 +19,9 @@ class Sermon(
     val transcript: String? = null,
     val summary: String? = null,
     val wordCount: WordCount? = null,
+)
+
+class Channel(
+    val title: String,
+    val id: String,
 )
