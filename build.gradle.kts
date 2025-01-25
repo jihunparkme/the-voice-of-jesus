@@ -38,6 +38,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 
+	// ---------------------------------- Data
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
 	// ---------------------------------- Util
 	implementation("io.ktor:ktor-client-core:$ktor")
 	implementation("io.ktor:ktor-client-cio:$ktor")
