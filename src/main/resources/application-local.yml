@@ -17,7 +17,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://localhost:27017/tech_news
+      uri: mongodb://localhost:27017/his_voice
 
 management:
   endpoints:
