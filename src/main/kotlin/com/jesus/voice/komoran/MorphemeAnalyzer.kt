@@ -9,16 +9,16 @@ object MorphemeAnalyzer {
     private val NOUNS = setOf("NNG", "NNP")
     private val ENDINGS = setOf("다EC", "다EF")
 
-    fun analyze(contents: String): Pair<String, WordCount> {
-        val replacedContents = contents.replace("\n", " ")
+    fun analyze(content: String): Pair<RefinedContent, WordCount> {
+        val replacedContent = content.replace("\n", " ")
 
-        val analysisResults = komoran.analyze(replacedContents)
-        val tokenList = analysisResults.tokenList
+        val analysisResult = komoran.analyze(replacedContent)
+        val tokenList = analysisResult.tokenList
 
-        val refinedContents = applyNewLine(tokenList, replacedContents)
+        val refinedContent = applyNewLine(tokenList, replacedContent)
         val wordCount = getWordCount(tokenList)
 
-        return Pair(refinedContents, wordCount)
+        return Pair(refinedContent, wordCount)
     }
 
     private fun getWordCount(tokenList: List<Token>): Map<String, Int> =
@@ -32,8 +32,8 @@ object MorphemeAnalyzer {
 
     private fun applyNewLine(
         tokenList: List<Token>,
-        replacedContents: String
-    ): String = replacedContents.insertNewlines(
+        replacedContent: String
+    ): String = replacedContent.insertNewlines(
         tokenList
             .filter { "${it.getMorph()}${it.getPos()}}".containsAny() }
             .map { it.getEndIndex() }
@@ -55,4 +55,5 @@ object MorphemeAnalyzer {
         ENDINGS.any { this.contains(it) }
 }
 
+typealias RefinedContent = String
 typealias WordCount = Map<String, Int>
