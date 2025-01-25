@@ -5,9 +5,7 @@ import com.jesus.voice.youtube.dto.VideoId
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
-import org.springframework.test.context.ActiveProfiles
 
-@ActiveProfiles("local")
 @IntegrationTest
 class YoutubeServiceTest(
     private val youtubeService: YoutubeService,

@@ -2,11 +2,9 @@ package com.jesus.voice.openai.gemini.service
 
 import com.jesus.voice.common.IntegrationTest
 import org.junit.jupiter.api.Test
-import org.springframework.test.context.ActiveProfiles
 import java.nio.file.Files
 import java.nio.file.Paths
 
-@ActiveProfiles("local")
 @IntegrationTest
 class GeminiChatServiceTest(
     private val geminiChatService: GeminiChatService,
