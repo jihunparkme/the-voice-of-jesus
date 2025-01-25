@@ -1,5 +1,6 @@
 package com.jesus.voice.domain.sermon
 
+import com.jesus.voice.komoran.WordCount
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
@@ -14,6 +15,7 @@ class Sermon(
     val streamingTime: String,
     val uploadedDate: String,
     val beforeDate: String,
-    val transcript: String,
-    val summary: String,
+    val transcript: String? = null,
+    val summary: String? = null,
+    val wordCount: WordCount? = null,
 )
