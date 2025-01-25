@@ -6,13 +6,13 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
 @IntegrationTest
-class YoutubeTranscriptServiceTest(
-    private val youtubeTranscriptService: YoutubeTranscriptService,
+class YoutubeServiceTest(
+    private val youtubeService: YoutubeService,
 ) : BehaviorSpec({
     given("비디오 아이디를 전달해서 자막을 요청할 경우") {
         When("자막이 있는 영상이라면") {
             val videoId = "ekr2nIex040"
-            val result = youtubeTranscriptService.getTranscript(VideoId(videoId))
+            val result = youtubeService.getTranscript(VideoId(videoId))
 
             Then("자막이 추출된다") {
                 result shouldBe """

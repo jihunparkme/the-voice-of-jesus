@@ -9,7 +9,7 @@ import com.jesus.voice.youtube.extractor.TranscriptUrlExtractor.extractTranscrip
 import org.springframework.stereotype.Service
 
 @Service
-class YoutubeTranscriptService(
+class YoutubeService(
     private val youtubeClient: YoutubeClient,
 ) {
     private val log by logger()
