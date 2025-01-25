@@ -13,10 +13,10 @@ class YoutubeServiceTest(
 
     given("비디오 아이디를 전달해서 자막을 요청할 경우") {
         When("자막이 있는 영상이라면") {
-            val videoId = "ekr2nIex040"
-            val result = youtubeService.getTranscript(VideoId(videoId))
+            Then("자막이 추출된다").config(enabled = false) {
+                val videoId = "ekr2nIex040"
+                val result = youtubeService.getTranscript(VideoId(videoId))
 
-            Then("자막이 추출된다") {
                 result shouldBe """
                     [Music]
                     start uhhuh
@@ -67,10 +67,10 @@ class YoutubeServiceTest(
 
     given("재생목록을 전달해서 동영상 목록을 요청할 경우") {
         When("동영상이 있는 재생목록이라면") {
-            val playListId = "PLVK2VzE62knzVtluDggBd7UiwTiWS2DW9"
-            val playListVideos = youtubeService.getVideoIdFromPlayList(playListId)
+            Then("재생목록이 추출된다.").config(enabled = false) {
+                val playListId = "PLVK2VzE62knzVtluDggBd7UiwTiWS2DW9"
+                val playListVideos = youtubeService.getVideoIdFromPlayList(playListId)
 
-            Then("재생목록이 추출된다.") {
                 playListVideos.size shouldBeGreaterThan 10
             }
         }

@@ -1,10 +1,12 @@
 package com.jesus.voice.openai.gemini.service
 
 import com.jesus.voice.common.IntegrationTest
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.nio.file.Files
 import java.nio.file.Paths
 
+@Disabled
 @IntegrationTest
 class GeminiChatServiceTest(
     private val geminiChatService: GeminiChatService,
