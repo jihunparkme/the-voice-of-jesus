@@ -1,5 +1,7 @@
 package com.jesus.voice.youtube.extractor
 
+import com.jesus.voice.common.exception.TranscriptDisabledException
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import java.nio.file.Files
@@ -23,9 +25,10 @@ class TranscriptUrlExtractorTest : BehaviorSpec({
             val resource = javaClass.classLoader.getResource("html/video-page-non-transcript.txt")
             val content = Files.readString(Paths.get(resource!!.toURI()))
 
-            Then("공백으로") {
-                val result = TranscriptUrlExtractor.extractTranscriptUrl(VIDEO_ID, content)
-                result shouldBe ""
+            Then("예외 발생") {
+                shouldThrow<TranscriptDisabledException> {
+                    TranscriptUrlExtractor.extractTranscriptUrl(VIDEO_ID, content)
+                }
             }
         }
     }

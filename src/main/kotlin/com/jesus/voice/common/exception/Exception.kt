@@ -13,8 +13,13 @@ class TranscriptDisabledException(
 }
 
 class YoutubeServiceException(
-    message: String,
-) : RuntimeException(message)
+    override var message: String,
+    throwable: Throwable,
+) : RuntimeException(message) {
+    init {
+        message = "$message error: ${throwable.message ?: ""}"
+    }
+}
 
 class WordCountException(
     message: String,
