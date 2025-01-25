@@ -1,6 +1,6 @@
 package com.jesus.voice.youtube.service
 
-import com.jesus.voice.common.exception.YoutubeTranscriptException
+import com.jesus.voice.common.exception.YoutubeServiceException
 import com.jesus.voice.common.util.logger
 import com.jesus.voice.youtube.client.YoutubeClient
 import com.jesus.voice.youtube.dto.VideoId
@@ -14,7 +14,7 @@ class YoutubeService(
 ) {
     private val log by logger()
 
-    @Throws(YoutubeTranscriptException::class)
+    @Throws(YoutubeServiceException::class)
     fun getTranscript(videoId: VideoId): String =
         runCatching {
             val videoPage = youtubeClient.getVideoPage(videoId.id).getOrThrow()
@@ -23,6 +23,6 @@ class YoutubeService(
             TranscriptExtractor.extractTranscript(transcriptXml)
         }.onFailure {
             log.error(it.message, it)
-            throw YoutubeTranscriptException("동영상 자막 추출에 실패하였습니다. videoId: $videoId")
+            throw YoutubeServiceException("동영상 자막 추출에 실패하였습니다. videoId: $videoId")
         }.getOrDefault("")
 }

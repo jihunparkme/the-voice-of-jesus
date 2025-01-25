@@ -12,7 +12,7 @@ class TranscriptDisabledException(
     }
 }
 
-class YoutubeTranscriptException(
+class YoutubeServiceException(
     message: String,
 ) : RuntimeException(message)
 
