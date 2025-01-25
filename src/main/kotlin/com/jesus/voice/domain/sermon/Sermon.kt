@@ -3,7 +3,7 @@ package com.jesus.voice.domain.sermon
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document(collection = "sermon")
+@Document(collection = "sermons")
 class Sermon(
     @Id
     val id: String? = null,
