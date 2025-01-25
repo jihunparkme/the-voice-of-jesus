@@ -15,18 +15,9 @@ spring:
     livereload:
       enabled: true
 
-logging:
-  level:
-    org:
-      hibernate:
-        nodeValue: info # basic log level for all messages
-        stat: debug # Statistics and slow queries
-        SQL_SLOW: info # Statistics and slow queries
-        SQL: debug # SQL statements and parameters
-        cache: debug # 2nd Level Cache
-        orm:
-          jdbc:
-            bind: trace # SQL statements and parameters
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/tech_news
 
 management:
   endpoints:
@@ -34,3 +25,12 @@ management:
       exposure:
         include: "*"
       base-path: /management/actuator
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
