@@ -3,12 +3,16 @@ package com.jesus.voice.youtube.service
 import com.jesus.voice.common.IntegrationTest
 import com.jesus.voice.youtube.dto.VideoId
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
+import org.springframework.test.context.ActiveProfiles
 
+@ActiveProfiles("local")
 @IntegrationTest
 class YoutubeServiceTest(
     private val youtubeService: YoutubeService,
 ) : BehaviorSpec({
+
     given("비디오 아이디를 전달해서 자막을 요청할 경우") {
         When("자막이 있는 영상이라면") {
             val videoId = "ekr2nIex040"
@@ -59,6 +63,17 @@ class YoutubeServiceTest(
                     I
                     I make me
                 """.trimIndent()
+            }
+        }
+    }
+
+    given("재생목록을 전달해서 동영상 목록을 요청할 경우") {
+        When("동영상이 있는 재생목록이라면") {
+            val playListId = "PLVK2VzE62knzVtluDggBd7UiwTiWS2DW9"
+            val playListVideos = youtubeService.getVideoIdFromPlayList(playListId)
+
+            Then("재생목록이 추출된다.") {
+                playListVideos.size shouldBeGreaterThan 10
             }
         }
     }

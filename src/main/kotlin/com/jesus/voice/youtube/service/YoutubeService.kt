@@ -3,7 +3,9 @@ package com.jesus.voice.youtube.service
 import com.jesus.voice.common.exception.YoutubeServiceException
 import com.jesus.voice.common.util.logger
 import com.jesus.voice.youtube.client.YoutubeClient
+import com.jesus.voice.youtube.dto.PlayListVideo
 import com.jesus.voice.youtube.dto.VideoId
+import com.jesus.voice.youtube.extractor.PlayListExtractor
 import com.jesus.voice.youtube.extractor.TranscriptExtractor
 import com.jesus.voice.youtube.extractor.TranscriptUrlExtractor.extractTranscriptUrl
 import org.springframework.stereotype.Service
@@ -25,4 +27,14 @@ class YoutubeService(
             log.error(it.message, it)
             throw YoutubeServiceException("동영상 자막 추출에 실패하였습니다. videoId: $videoId")
         }.getOrDefault("")
+
+    @Throws(YoutubeServiceException::class)
+    fun getVideoIdFromPlayList(playListId: String): List<PlayListVideo> =
+        runCatching {
+            val playListHtml = youtubeClient.getPlayList(playListId).getOrThrow()
+            PlayListExtractor.extractPlayList(playListId, playListHtml)
+        }.onFailure {
+            log.error(it.message, it)
+            throw YoutubeServiceException("재생목록 동영상 추출에 실패하였습니다. playListId: $playListId")
+        }.getOrDefault(emptyList())
 }
