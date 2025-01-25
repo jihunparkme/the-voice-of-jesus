@@ -8,7 +8,7 @@ import java.nio.file.Paths
 class TranscriptUrlExtractorTest : BehaviorSpec({
     Given("영상 페이지 컨텐츠가 전달되면") {
         val VIDEO_ID = "AA1234"
-        val resource = javaClass.classLoader.getResource("html/video-page.html")
+        val resource = javaClass.classLoader.getResource("html/video-page.txt")
         val content = Files.readString(Paths.get(resource!!.toURI()))
 
         When("transcript url 추출") {

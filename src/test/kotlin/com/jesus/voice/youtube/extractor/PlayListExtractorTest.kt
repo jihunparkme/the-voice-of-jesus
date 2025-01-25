@@ -9,7 +9,7 @@ class PlayListExtractorTest {
     @Test
     fun success_extract_playList() {
         val playListId = "PLVK2VzE62knzVtluDggBd7UiwTiWS2DW9"
-        val resource = javaClass.classLoader.getResource("html/play-list.html")
+        val resource = javaClass.classLoader.getResource("html/play-list.txt")
         val playListHtml = Files.readString(Paths.get(resource!!.toURI()))
 
         val result = PlayListExtractor.extractPlayList(playListId, playListHtml)
