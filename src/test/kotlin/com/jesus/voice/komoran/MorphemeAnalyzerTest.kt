@@ -14,6 +14,7 @@ class MorphemeAnalyzerTest {
         val (refinedContents, wordCount) = MorphemeAnalyzer.analyze(contents)
 
         println(refinedContents)
+        println(wordCount)
         wordCount.toList().get(0) shouldBe ("기도" to 146)
         wordCount.toList().get(1) shouldBe ("하나님" to 53)
         wordCount.toList().get(2) shouldBe ("말씀" to 28)
