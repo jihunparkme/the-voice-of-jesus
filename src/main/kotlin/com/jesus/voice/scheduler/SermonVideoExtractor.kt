@@ -2,8 +2,8 @@ package com.jesus.voice.scheduler
 
 import com.jesus.voice.common.dtos.PlayListChannel
 import com.jesus.voice.common.util.logger
-import com.jesus.voice.domain.sermon.Sermon
-import com.jesus.voice.domain.sermon.SermonRepository
+import com.jesus.voice.aggregate.sermon.domain.Sermon
+import com.jesus.voice.aggregate.sermon.domain.SermonRepository
 import com.jesus.voice.external.komoran.MorphemeAnalyzer
 import com.jesus.voice.external.openai.gemini.service.GeminiChatService
 import com.jesus.voice.external.youtube.dto.PlayListVideo

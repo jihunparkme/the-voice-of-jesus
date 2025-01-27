@@ -1,4 +1,4 @@
-package com.jesus.voice.domain.sermon
+package com.jesus.voice.aggregate.sermon.domain
 
 import org.springframework.data.mongodb.repository.MongoRepository
 

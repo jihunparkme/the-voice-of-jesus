@@ -1,6 +1,6 @@
 package com.jesus.voice.common.dtos
 
-import com.jesus.voice.domain.sermon.Channel
+import com.jesus.voice.aggregate.sermon.domain.Channel
 
 enum class PlayListChannel(
     val title: String,

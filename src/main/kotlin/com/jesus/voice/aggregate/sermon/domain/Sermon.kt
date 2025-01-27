@@ -1,4 +1,4 @@
-package com.jesus.voice.domain.sermon
+package com.jesus.voice.aggregate.sermon.domain
 
 import com.jesus.voice.external.komoran.WordCount
 import org.springframework.data.annotation.Id
