@@ -1,4 +1,4 @@
-package com.jesus.voice.youtube.extractor
+package com.jesus.voice.external.youtube.extractor
 
 import com.jesus.voice.common.exception.TranscriptDisabledException
 import com.jesus.voice.external.youtube.extractor.TranscriptUrlExtractor

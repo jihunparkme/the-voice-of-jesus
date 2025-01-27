@@ -1,4 +1,4 @@
-package com.jesus.voice.openai.gemini.service
+package com.jesus.voice.external.openai.gemini.service
 
 import com.jesus.voice.common.IntegrationTest
 import com.jesus.voice.external.openai.gemini.service.GeminiChatService

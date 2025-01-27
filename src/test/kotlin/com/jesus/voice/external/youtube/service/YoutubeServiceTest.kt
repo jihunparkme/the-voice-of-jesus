@@ -1,4 +1,4 @@
-package com.jesus.voice.youtube.service
+package com.jesus.voice.external.youtube.service
 
 import com.jesus.voice.common.IntegrationTest
 import com.jesus.voice.external.youtube.dto.VideoId

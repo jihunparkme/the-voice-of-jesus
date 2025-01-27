@@ -1,4 +1,4 @@
-package com.jesus.voice.youtube.extractor
+package com.jesus.voice.external.youtube.extractor
 
 import com.jesus.voice.external.youtube.extractor.PlayListExtractor
 import io.kotest.matchers.shouldBe
