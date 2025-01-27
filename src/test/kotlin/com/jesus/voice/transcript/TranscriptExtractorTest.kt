@@ -1,6 +1,6 @@
 package com.jesus.voice.transcript
 
-import com.jesus.voice.youtube.extractor.TranscriptExtractor
+import com.jesus.voice.external.youtube.extractor.TranscriptExtractor
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import java.nio.file.Files

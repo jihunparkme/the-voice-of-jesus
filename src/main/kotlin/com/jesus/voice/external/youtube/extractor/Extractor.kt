@@ -1,12 +1,12 @@
-package com.jesus.voice.youtube.extractor
+package com.jesus.voice.external.youtube.extractor
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.jesus.voice.common.exception.TranscriptDisabledException
 import com.jesus.voice.common.exception.YoutubePlayListExtractException
-import com.jesus.voice.youtube.dto.Const.YOUTUBE_WATCH_URL
-import com.jesus.voice.youtube.dto.Const.objectMapper
-import com.jesus.voice.youtube.dto.PlayListVideo
-import com.jesus.voice.youtube.dto.Transcript
+import com.jesus.voice.external.youtube.dto.Const.YOUTUBE_WATCH_URL
+import com.jesus.voice.external.youtube.dto.Const.objectMapper
+import com.jesus.voice.external.youtube.dto.PlayListVideo
+import com.jesus.voice.external.youtube.dto.Transcript
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
 import kotlin.jvm.Throws

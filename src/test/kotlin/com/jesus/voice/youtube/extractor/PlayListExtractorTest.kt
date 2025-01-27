@@ -1,5 +1,6 @@
 package com.jesus.voice.youtube.extractor
 
+import com.jesus.voice.external.youtube.extractor.PlayListExtractor
 import io.kotest.matchers.shouldBe
 import java.nio.file.Files
 import java.nio.file.Paths

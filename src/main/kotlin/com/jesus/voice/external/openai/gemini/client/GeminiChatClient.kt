@@ -1,10 +1,10 @@
-package com.jesus.voice.openai.gemini.client
+package com.jesus.voice.external.openai.gemini.client
 
 import com.jesus.voice.config.KtorClient
 import com.jesus.voice.config.ResponseResult
 import com.jesus.voice.config.responseResult
-import com.jesus.voice.openai.gemini.dto.GeminiChatRequest
-import com.jesus.voice.openai.gemini.dto.GeminiChatResponse
+import com.jesus.voice.external.openai.gemini.dto.GeminiChatRequest
+import com.jesus.voice.external.openai.gemini.dto.GeminiChatResponse
 import kotlinx.coroutines.runBlocking
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component

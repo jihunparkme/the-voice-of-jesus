@@ -1,8 +1,8 @@
-package com.jesus.voice.youtube.dto
+package com.jesus.voice.external.youtube.dto
 
 import com.jesus.voice.domain.sermon.Channel
 import com.jesus.voice.domain.sermon.Sermon
-import com.jesus.voice.komoran.WordCount
+import com.jesus.voice.external.komoran.WordCount
 
 data class VideoId(
     val id: String

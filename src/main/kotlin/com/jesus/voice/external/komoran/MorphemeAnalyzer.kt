@@ -1,4 +1,4 @@
-package com.jesus.voice.komoran
+package com.jesus.voice.external.komoran
 
 import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL
 import kr.co.shineware.nlp.komoran.core.Komoran

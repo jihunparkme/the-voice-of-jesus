@@ -1,6 +1,6 @@
 package com.jesus.voice.domain.sermon
 
-import com.jesus.voice.komoran.WordCount
+import com.jesus.voice.external.komoran.WordCount
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 

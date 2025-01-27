@@ -1,12 +1,12 @@
-package com.jesus.voice.youtube.service
+package com.jesus.voice.external.youtube.service
 
 import com.jesus.voice.common.exception.YoutubeServiceException
-import com.jesus.voice.youtube.client.YoutubeClient
-import com.jesus.voice.youtube.dto.PlayListVideo
-import com.jesus.voice.youtube.dto.VideoId
-import com.jesus.voice.youtube.extractor.PlayListExtractor
-import com.jesus.voice.youtube.extractor.TranscriptExtractor
-import com.jesus.voice.youtube.extractor.TranscriptUrlExtractor.extractTranscriptUrl
+import com.jesus.voice.external.youtube.client.YoutubeClient
+import com.jesus.voice.external.youtube.dto.PlayListVideo
+import com.jesus.voice.external.youtube.dto.VideoId
+import com.jesus.voice.external.youtube.extractor.PlayListExtractor
+import com.jesus.voice.external.youtube.extractor.TranscriptExtractor
+import com.jesus.voice.external.youtube.extractor.TranscriptUrlExtractor.extractTranscriptUrl
 import org.springframework.stereotype.Service
 
 @Service

@@ -1,4 +1,4 @@
-package com.jesus.voice.openai.gemini.dto
+package com.jesus.voice.external.openai.gemini.dto
 
 import kotlinx.serialization.Serializable
 

@@ -4,11 +4,11 @@ import com.jesus.voice.common.dtos.PlayListChannel
 import com.jesus.voice.common.util.logger
 import com.jesus.voice.domain.sermon.Sermon
 import com.jesus.voice.domain.sermon.SermonRepository
-import com.jesus.voice.komoran.MorphemeAnalyzer
-import com.jesus.voice.openai.gemini.service.GeminiChatService
-import com.jesus.voice.youtube.dto.PlayListVideo
-import com.jesus.voice.youtube.dto.VideoId
-import com.jesus.voice.youtube.service.YoutubeService
+import com.jesus.voice.external.komoran.MorphemeAnalyzer
+import com.jesus.voice.external.openai.gemini.service.GeminiChatService
+import com.jesus.voice.external.youtube.dto.PlayListVideo
+import com.jesus.voice.external.youtube.dto.VideoId
+import com.jesus.voice.external.youtube.service.YoutubeService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

@@ -1,6 +1,7 @@
 package com.jesus.voice.openai.gemini.service
 
 import com.jesus.voice.common.IntegrationTest
+import com.jesus.voice.external.openai.gemini.service.GeminiChatService
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.nio.file.Files

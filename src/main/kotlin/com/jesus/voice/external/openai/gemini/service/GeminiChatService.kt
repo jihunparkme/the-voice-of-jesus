@@ -1,9 +1,9 @@
-package com.jesus.voice.openai.gemini.service
+package com.jesus.voice.external.openai.gemini.service
 
 import com.jesus.voice.common.exception.GeminiChatException
 import com.jesus.voice.common.exception.WordCountException
 import com.jesus.voice.common.util.logger
-import com.jesus.voice.openai.gemini.client.GeminiChatClient
+import com.jesus.voice.external.openai.gemini.client.GeminiChatClient
 import org.springframework.stereotype.Service
 
 @Service

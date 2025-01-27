@@ -1,4 +1,4 @@
-package com.jesus.voice.youtube.dto
+package com.jesus.voice.external.youtube.dto
 
 import com.fasterxml.jackson.databind.ObjectMapper
 
