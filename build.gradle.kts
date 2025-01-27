@@ -37,6 +37,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
 	// ---------------------------------- Data
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
@@ -52,6 +53,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$fasterxml")
 	implementation("io.github.microutils:kotlin-logging-jvm:$kotlinLogging")
 	implementation("com.github.shin285:KOMORAN:$komoran")
+	compileOnly("org.springframework.boot:spring-boot-devtools")
 
 	// ---------------------------------- TEST
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
