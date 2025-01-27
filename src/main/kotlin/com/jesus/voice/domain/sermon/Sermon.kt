@@ -9,6 +9,7 @@ class Sermon(
     @Id
     val id: String? = null,
     val videoId: String,
+    val videoUrl: String,
     val thumbnailUrl: String,
     val title: String,
     val channel: Channel,

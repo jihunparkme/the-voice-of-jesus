@@ -20,6 +20,7 @@ data class Transcript(
 
 data class PlayListVideo(
     val videoId: String,
+    val videoUrl: String,
     val thumbnailUrl: String,
     val title: String,
     val publisher: String,
@@ -36,6 +37,7 @@ data class PlayListVideo(
         wordCount: WordCount = mapOf()
     ): Sermon = Sermon(
         videoId = this.videoId,
+        videoUrl = this.videoUrl,
         thumbnailUrl = this.thumbnailUrl,
         title = this.title,
         channel = channel,

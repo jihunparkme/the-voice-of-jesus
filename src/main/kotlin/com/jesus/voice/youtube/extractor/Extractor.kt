@@ -3,6 +3,7 @@ package com.jesus.voice.youtube.extractor
 import com.fasterxml.jackson.databind.JsonNode
 import com.jesus.voice.common.exception.TranscriptDisabledException
 import com.jesus.voice.common.exception.YoutubePlayListExtractException
+import com.jesus.voice.youtube.dto.Const.YOUTUBE_WATCH_URL
 import com.jesus.voice.youtube.dto.Const.objectMapper
 import com.jesus.voice.youtube.dto.PlayListVideo
 import com.jesus.voice.youtube.dto.Transcript
@@ -79,6 +80,7 @@ object PlayListExtractor {
                 val title = video?.get("title")?.get("runs")?.first()?.get("text")?.asText() ?: ""
                 PlayListVideo(
                     videoId = video?.get("videoId")?.asText() ?: "",
+                    videoUrl = YOUTUBE_WATCH_URL + video,
                     thumbnailUrl = video?.get("thumbnail")?.last()?.last()?.get("url")?.asText() ?: "",
                     title = title,
                     publisher = video?.get("shortBylineText")?.get("runs")?.first()?.get("text")?.asText() ?: "",
