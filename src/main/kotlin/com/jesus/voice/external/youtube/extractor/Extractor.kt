@@ -78,9 +78,10 @@ object PlayListExtractor {
             ?.get("contents")?.map() {
                 val video = it.get("playlistVideoRenderer")
                 val title = video?.get("title")?.get("runs")?.first()?.get("text")?.asText() ?: ""
+                val videoId = video?.get("videoId")?.asText() ?: ""
                 PlayListVideo(
-                    videoId = video?.get("videoId")?.asText() ?: "",
-                    videoUrl = YOUTUBE_WATCH_URL + video,
+                    videoId = videoId,
+                    videoUrl = YOUTUBE_WATCH_URL + videoId,
                     thumbnailUrl = video?.get("thumbnail")?.last()?.last()?.get("url")?.asText() ?: "",
                     title = title,
                     publisher = video?.get("shortBylineText")?.get("runs")?.first()?.get("text")?.asText() ?: "",

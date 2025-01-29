@@ -2,6 +2,13 @@ package com.jesus.voice.common.dtos
 
 import com.jesus.voice.aggregate.sermon.domain.Channel
 
+enum class ChannelType(
+    val title: String,
+    val url: String,
+) {
+    AYMC("안양감리교회", "https://www.aymc.org/")
+}
+
 enum class PlayListChannel(
     val title: String,
     val id: String,
