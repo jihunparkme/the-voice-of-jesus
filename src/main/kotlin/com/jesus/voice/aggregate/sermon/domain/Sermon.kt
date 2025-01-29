@@ -20,6 +20,7 @@ class Sermon(
     val transcript: String? = null,
     val summary: String? = null,
     val wordCount: WordCount? = null,
+    val createdDt: String,
 )
 
 class Channel(

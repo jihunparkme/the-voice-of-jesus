@@ -29,6 +29,7 @@ data class PlayListVideo(
     val beforeDate: String,
     val transcript: String = "",
     val summary: String = "",
+    val createdDt: String,
 ) {
     fun toSermon(
         channel: Channel,
@@ -48,5 +49,6 @@ data class PlayListVideo(
         transcript = transcript,
         summary = summary,
         wordCount = wordCount,
+        createdDt = this.createdDt,
     )
 }
