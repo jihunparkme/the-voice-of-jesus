@@ -16,15 +16,15 @@ enum class ChannelType(
     }
 }
 
-interface PlayListChannels {
+interface PlayListChannel {
     val title: String
     val id: String
 }
 
-enum class PlayListChannel(
+enum class AYMCPlayList(
     override val title: String,
     override val id: String,
-) : PlayListChannels {
+) : PlayListChannel {
     SUNDAY_1("주일1부예배", "PLVK2VzE62knzVtluDggBd7UiwTiWS2DW9"),
     DADRIM("다드림예배", "PLVK2VzE62knxZpbQVCg_4VtY-FA5X80Jl"),
     DAWN("새벽기도회", "PLVK2VzE62knwgDZIzr-bxi_S6URleOU8C"),

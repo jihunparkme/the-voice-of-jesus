@@ -1,6 +1,6 @@
 package com.jesus.voice.scheduler
 
-import com.jesus.voice.common.dtos.PlayListChannel
+import com.jesus.voice.common.dtos.AYMCPlayList
 import com.jesus.voice.common.util.logger
 import com.jesus.voice.aggregate.sermon.domain.Sermon
 import com.jesus.voice.aggregate.sermon.domain.SermonRepository
@@ -23,9 +23,9 @@ class SermonVideoExtractor(
 ) {
     @Scheduled(cron = "0 0 20 * * ?")
     fun runScheduler() = listOf(
-        PlayListChannel.SUNDAY_1,
-        PlayListChannel.DADRIM,
-        PlayListChannel.DAWN,
+        AYMCPlayList.SUNDAY_1,
+        AYMCPlayList.DADRIM,
+        AYMCPlayList.DAWN,
     ).forEach { channel ->
         runBlocking {
             launch {
@@ -35,7 +35,7 @@ class SermonVideoExtractor(
         }
     }
 
-    private fun saveSermonVideo(channel: PlayListChannel) =
+    private fun saveSermonVideo(channel: AYMCPlayList) =
         youtubeService.getVideoIdFromPlayList(channel.id)
             .take(1)
             .filterNot { sermonRepository.existsByVideoId(it.videoId) }
@@ -45,7 +45,7 @@ class SermonVideoExtractor(
                 log.info("✅✅✅ Sermon saved: $sermon")
             }
 
-    private fun generateSermon(playListVideo: PlayListVideo, channel: PlayListChannel): Sermon {
+    private fun generateSermon(playListVideo: PlayListVideo, channel: AYMCPlayList): Sermon {
         val transcript = runCatching {
             youtubeService.getTranscript(VideoId(playListVideo.videoId))
         }.getOrDefault("")
