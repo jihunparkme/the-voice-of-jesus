@@ -9,3 +9,6 @@ spring:
       local: local, ai
       prod: real, ai
 
+  data:
+    mongodb:
+      field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
