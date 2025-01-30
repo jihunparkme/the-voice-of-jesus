@@ -2,6 +2,9 @@ package com.jesus.voice.aggregate.sermon.controller
 
 import com.jesus.voice.aggregate.sermon.dto.SermonRequest
 import com.jesus.voice.aggregate.sermon.service.SermonService
+import com.jesus.voice.common.dtos.ChannelType
+import com.jesus.voice.common.dtos.ChannelType.AYMC
+import com.jesus.voice.common.dtos.PlayListChannel
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Controller
@@ -34,11 +37,9 @@ class IndexController(
         return "index"
     }
 
-    // TODO: 파라미터로 채널을 받으면 채널에 맞는 플레이 리스트를 반환 when()
     private fun getPlayList(channel: String): List<String> {
-        return when (channel) {
-            "ChannelA" -> listOf("Playlist ", "Playlist 2")
-            "ChannelB" -> listOf("Playlist 3", "Playlist 4")
+        return when (ChannelType.from(channel)) {
+            AYMC -> PlayListChannel.titleList()
             else -> emptyList()
         }
     }
