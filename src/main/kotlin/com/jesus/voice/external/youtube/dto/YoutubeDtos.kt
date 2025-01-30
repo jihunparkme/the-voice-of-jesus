@@ -1,6 +1,6 @@
 package com.jesus.voice.external.youtube.dto
 
-import com.jesus.voice.aggregate.sermon.domain.Channel
+import com.jesus.voice.aggregate.sermon.domain.PlayList
 import com.jesus.voice.aggregate.sermon.domain.Sermon
 import com.jesus.voice.external.komoran.WordCount
 
@@ -32,7 +32,7 @@ data class PlayListVideo(
     val createdDt: String,
 ) {
     fun toSermon(
-        channel: Channel,
+        playList: PlayList,
         transcript: String = "",
         summary: String = "",
         wordCount: WordCount = mapOf()
@@ -41,7 +41,7 @@ data class PlayListVideo(
         videoUrl = this.videoUrl,
         thumbnailUrl = this.thumbnailUrl,
         title = this.title,
-        channel = channel,
+        playList = playList,
         publisher = this.publisher,
         streamingTime = this.streamingTime,
         uploadedDate = this.uploadedDate,

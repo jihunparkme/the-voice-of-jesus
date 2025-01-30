@@ -12,7 +12,7 @@ class Sermon(
     val videoUrl: String,
     val thumbnailUrl: String,
     val title: String,
-    val channel: Channel,
+    val playList: PlayList,
     val publisher: String,
     val streamingTime: String,
     val uploadedDate: String,
@@ -23,7 +23,7 @@ class Sermon(
     val createdDt: String,
 )
 
-class Channel(
+class PlayList(
     val title: String,
     val id: String,
 )

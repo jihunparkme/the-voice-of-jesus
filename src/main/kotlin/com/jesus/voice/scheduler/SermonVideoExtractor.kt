@@ -51,14 +51,14 @@ class SermonVideoExtractor(
         }.getOrDefault("")
         if (transcript.isBlank()) {
             return playListVideo.toSermon(
-                channel = channel.toDocument()
+                playList = channel.toDocument()
             )
         }
         val (refinedContent, wordCount) = MorphemeAnalyzer.analyze(transcript)
         val summarizedContent = geminiChatService.chat(CHAT_PREFIX + refinedContent)
             .replace("  ", " ")
         return playListVideo.toSermon(
-            channel = channel.toDocument(),
+            playList = channel.toDocument(),
             transcript = refinedContent,
             summary = summarizedContent,
             wordCount = wordCount,

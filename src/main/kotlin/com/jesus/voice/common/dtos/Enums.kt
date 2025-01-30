@@ -1,6 +1,6 @@
 package com.jesus.voice.common.dtos
 
-import com.jesus.voice.aggregate.sermon.domain.Channel
+import com.jesus.voice.aggregate.sermon.domain.PlayList
 
 enum class ChannelType(
     val title: String,
@@ -21,5 +21,5 @@ enum class PlayListChannel(
     ;
 
     fun toDocument() =
-        Channel(this.title, this.id)
+        PlayList(this.title, this.id)
 }
