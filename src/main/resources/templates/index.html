@@ -68,14 +68,15 @@
 
                 <div class="col-lg-4">
                     <form name="form" id="form" th:action="@{/}" method="get">
-                        <input type="hidden" id="page" name="page" value="0"/>
+                        <input type="hidden" id="page" name="page" th:value="${param.page}"/>
+                        <input type="hidden" id="channel" name="channel" th:value="${param.channel}"/>
 
                         <div class="card mb-4">
                             <div class="card-header">Search</div>
                             <div class="card-body">
                                 <div class="input-group">
-                                    <input type="text" th:value="${param.search}" class="form-control" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                    <button type="button" th:onclick="'search()'" class="btn btn-primary" id="button-search">Search</button>
+                                    <input type="text" id="search" name="search" th:value="${param.search}" class="form-control" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                    <button type="button" th:onclick="'goSearch()'" class="btn btn-primary" id="button-search">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -87,14 +88,14 @@
                                     <div class="col-sm-6">
                                         <ul class="list-unstyled mb-0">
                                             <li th:each="channel : ${channels}" th:if="${channelStat.index % 2 == 0}">
-                                                <a href="#" th:onclick="'goChannel()'" th:text="${channel}"></a>
+                                                <a href="#" th:onclick="'goChannel(event)'" th:text="${channel}" th:data-value="${channel}"></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-6">
                                         <ul class="list-unstyled mb-0">
                                             <li th:each="channel : ${channels}" th:if="${channelStat.index % 2 != 0}">
-                                                <a href="#" th:onclick="'goChannel()'" th:text="${channel}"></a>
+                                                <a href="#" th:onclick="'goChannel(event)'" th:text="${channel}" th:data-value="${channel}"></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -133,21 +134,23 @@
             let totalPages = [[${sermonListPage.totalPages}]];
             let startPage = [[${sermonListPage.number}]] + 1;
 
-            $(function () {
-                window.pagObj = $('#pagination').twbsPagination({
-                    totalPages: totalPages,
-                    startPage: startPage,
-                    visiblePages: 10,
-                    prev: "‹",
-                    next: "›",
-                    first: '«',
-                    last: '»',
-                    onPageClick: function (event, page) {
-                    }
-                }).on('page', function (event, page) {
-                    searchRecordList(page - 1);
+            if (totalPages > 0) {
+                $(function () {
+                    window.pagObj = $('#pagination').twbsPagination({
+                        totalPages: totalPages,
+                        startPage: startPage,
+                        visiblePages: 10,
+                        prev: "‹",
+                        next: "›",
+                        first: '«',
+                        last: '»',
+                        onPageClick: function (event, page) {
+                        }
+                    }).on('page', function (event, page) {
+                        searchRecordList(page - 1);
+                    });
                 });
-            });
+            }
         </script>
     </body>
 </html>

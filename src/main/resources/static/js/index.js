@@ -7,7 +7,12 @@ function searchRecordList(page) {
     $("#form").submit();
 }
 
-function search() {
-    $("#page").val(0);
-    $("#form").submit();
+function goSearch() {
+    searchRecordList(0)
+}
+
+function goChannel(event) {
+    let channelName = event.target.getAttribute("data-value")
+    $("#channel").val(channelName);
+    searchRecordList(0)
 }
