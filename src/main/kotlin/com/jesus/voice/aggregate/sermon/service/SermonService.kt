@@ -3,6 +3,7 @@ package com.jesus.voice.aggregate.sermon.service
 import com.jesus.voice.aggregate.sermon.domain.Sermon
 import com.jesus.voice.aggregate.sermon.domain.SermonRepository
 import com.jesus.voice.aggregate.sermon.dto.SermonRequest
+import com.jesus.voice.aggregate.sermon.dto.SermonResponse
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
@@ -16,5 +17,8 @@ class SermonService(
     fun findSermons(
         param: SermonRequest,
         pageable: PageRequest,
-    ) : Page<Sermon> = sermonRepository.findSermons(param, pageable)
+    ): Page<SermonResponse> {
+        val findSermons = sermonRepository.findSermons(param, pageable)
+        return findSermons.map(Sermon::toResponse)
+    }
 }

@@ -1,5 +1,8 @@
 package com.jesus.voice.aggregate.sermon.dto
 
+import com.jesus.voice.aggregate.sermon.domain.PlayList
+import com.jesus.voice.external.komoran.WordCount
+
 data class SermonRequest(
     val page: Int = 0,
     val size: Int = 10,
@@ -7,4 +10,20 @@ data class SermonRequest(
     val search: String = "",
     val channel: String = "",
     val playList: String = "",
+)
+
+data class SermonResponse(
+    val videoId: String,
+    val videoUrl: String,
+    val thumbnailUrl: String,
+    val title: String,
+    val playList: PlayList,
+    val publisher: String,
+    val streamingTime: String,
+    val uploadedDate: String,
+    val beforeDate: String,
+    val transcript: String? = null,
+    val summary: String? = null,
+    val wordCount: WordCount? = null,
+    val createdDt: String,
 )

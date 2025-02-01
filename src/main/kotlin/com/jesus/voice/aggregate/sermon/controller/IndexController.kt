@@ -3,8 +3,7 @@ package com.jesus.voice.aggregate.sermon.controller
 import com.jesus.voice.aggregate.sermon.dto.SermonRequest
 import com.jesus.voice.aggregate.sermon.service.SermonService
 import com.jesus.voice.common.dtos.ChannelType
-import com.jesus.voice.common.dtos.ChannelType.AYMC
-import com.jesus.voice.common.dtos.AYMCPlayList
+import com.jesus.voice.common.dtos.getPlayList
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Controller
@@ -36,12 +35,5 @@ class IndexController(
         }
 
         return "index"
-    }
-
-    private fun getPlayList(channel: String): List<String> {
-        return when (ChannelType.from(channel)) {
-            AYMC -> AYMCPlayList.titleList()
-            else -> emptyList()
-        }
     }
 }

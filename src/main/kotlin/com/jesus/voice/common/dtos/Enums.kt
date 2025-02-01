@@ -1,6 +1,7 @@
 package com.jesus.voice.common.dtos
 
 import com.jesus.voice.aggregate.sermon.domain.PlayList
+import com.jesus.voice.common.dtos.ChannelType.AYMC
 
 enum class ChannelType(
     val title: String,
@@ -21,6 +22,13 @@ enum class ChannelType(
 interface PlayListChannel {
     val title: String
     val id: String
+}
+
+fun getPlayList(channel: String): List<String> {
+    return when (ChannelType.from(channel)) {
+        AYMC -> AYMCPlayList.titleList()
+        else -> emptyList()
+    }
 }
 
 enum class AYMCPlayList(

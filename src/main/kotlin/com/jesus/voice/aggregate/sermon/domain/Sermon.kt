@@ -1,5 +1,6 @@
 package com.jesus.voice.aggregate.sermon.domain
 
+import com.jesus.voice.aggregate.sermon.dto.SermonResponse
 import com.jesus.voice.external.komoran.WordCount
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -21,7 +22,25 @@ class Sermon(
     val summary: String? = null,
     val wordCount: WordCount? = null,
     val createdDt: String,
-)
+) {
+    fun toResponse(): SermonResponse {
+        return SermonResponse(
+            videoId = videoId,
+            videoUrl = videoUrl,
+            thumbnailUrl = thumbnailUrl,
+            title = title,
+            playList = playList,
+            publisher = publisher,
+            streamingTime = streamingTime,
+            uploadedDate = uploadedDate,
+            beforeDate = beforeDate,
+            transcript = transcript,
+            summary = summary,
+            wordCount = wordCount,
+            createdDt = createdDt,
+        )
+    }
+}
 
 class PlayList(
     val title: String,
