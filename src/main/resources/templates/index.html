@@ -86,16 +86,16 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <ul class="list-unstyled mb-0">
-                                            <li><a href="#!">교회1</a></li>
-                                            <li><a href="#!">교회2</a></li>
-                                            <li><a href="#!">교회3</a></li>
+                                            <li th:each="channel : ${channels}" th:if="${channelStat.index % 2 == 0}">
+                                                <a href="#" th:onclick="'goChannel()'" th:text="${channel}"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-6">
                                         <ul class="list-unstyled mb-0">
-                                            <li><a href="#!">교회4</a></li>
-                                            <li><a href="#!">교회5</a></li>
-                                            <li><a href="#!">교회6</a></li>
+                                            <li th:each="channel : ${channels}" th:if="${channelStat.index % 2 != 0}">
+                                                <a href="#" th:onclick="'goChannel()'" th:text="${channel}"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

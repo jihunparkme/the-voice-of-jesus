@@ -13,6 +13,8 @@ enum class ChannelType(
         fun from(value: String): ChannelType {
             return entries.firstOrNull { it.title == value } ?: AYMC
         }
+
+        fun channelList(): List<String> = ChannelType.entries.map { it.title }
     }
 }
 

@@ -31,6 +31,7 @@ class IndexController(
         model.apply {
             addAttribute("sermonListPage", sermonListPage)
             addAttribute("page", param.page)
+            addAttribute("channels", ChannelType.channelList())
             param.channel.takeIf { it.isNotBlank() }?.let { addAttribute("playList", getPlayList(it)) }
         }
 
