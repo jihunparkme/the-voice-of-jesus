@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <div th:replace="~{common/head}"></div>
+    <link th:href="@{/css/index.css}" rel="stylesheet"/>
 
     <body>
         <div th:replace="~{common/navigator}"></div>
@@ -132,24 +133,21 @@
             let totalPages = [[${sermonListPage.totalPages}]];
             let startPage = [[${sermonListPage.number}]] + 1;
 
-            if (totalPages >= 1) {
-                $(function () {
-                    window.pagObj = $('#pagination').twbsPagination({
-                        totalPages: totalPages,
-                        startPage: startPage,
-                        visiblePages: 10,
-                        prev: "‹",
-                        next: "›",
-                        first: '«',
-                        last: '»',
-                        onPageClick: function (event, page) {
-                        }
-                    }).on('page', function (event, page) {
-                        searchRecordList(page - 1);
-                    });
+            $(function () {
+                window.pagObj = $('#pagination').twbsPagination({
+                    totalPages: totalPages,
+                    startPage: startPage,
+                    visiblePages: 10,
+                    prev: "‹",
+                    next: "›",
+                    first: '«',
+                    last: '»',
+                    onPageClick: function (event, page) {
+                    }
+                }).on('page', function (event, page) {
+                    searchRecordList(page - 1);
                 });
-            }
-
+            });
         </script>
     </body>
 </html>
