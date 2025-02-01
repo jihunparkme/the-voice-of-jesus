@@ -16,3 +16,11 @@ function goChannel(event) {
     $("#channel").val(channelName);
     searchRecordList(0)
 }
+
+function resetFilter() {
+    document.getElementById('page').value = null;
+    document.getElementById('channel').value = null;
+    document.getElementById('search').value = null;
+    document.getElementById('playList').value = null;
+    searchRecordList(0)
+}
