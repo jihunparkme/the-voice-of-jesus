@@ -1,6 +1,7 @@
 package com.jesus.voice.aggregate.sermon.dto
 
 import com.jesus.voice.aggregate.sermon.domain.PlayList
+import com.jesus.voice.common.dtos.ChannelType
 import com.jesus.voice.external.komoran.WordCount
 
 data class SermonRequest(
@@ -8,7 +9,7 @@ data class SermonRequest(
     val size: Int = 10,
 
     val search: String = "",
-    val channel: String = "",
+    val channel: String = ChannelType.AYMC.name,
     val playList: String = "",
 )
 

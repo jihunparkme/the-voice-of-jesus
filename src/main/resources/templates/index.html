@@ -97,14 +97,14 @@
                                     <div class="col-sm-6">
                                         <ul class="list-unstyled mb-0">
                                             <li th:each="channel : ${channels}" th:if="${channelStat.index % 2 == 0}">
-                                                <a href="#" th:onclick="'goChannel(event)'" th:text="${channel}" th:data-value="${channel}"></a>
+                                                <a href="#" th:onclick="'goChannel(event)'" th:text="${channel.second}" th:data-value="${channel.first}"></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-6">
                                         <ul class="list-unstyled mb-0">
                                             <li th:each="channel : ${channels}" th:if="${channelStat.index % 2 != 0}">
-                                                <a href="#" th:onclick="'goChannel(event)'" th:text="${channel}" th:data-value="${channel}"></a>
+                                                <a href="#" th:onclick="'goChannel(event)'" th:text="${channel.second}" th:data-value="${channel.first}"></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -118,15 +118,16 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <ul class="list-unstyled mb-0">
-                                            <li><a href="#!">1부예배</a></li>
-                                            <li><a href="#!">2부예배</a></li>
-                                            <li><a href="#!">3부예배</a></li>
+                                            <li th:each="play : ${playList}" th:if="${playStat.index % 2 == 0}">
+                                                <a href="#" th:onclick="'goPlayList(event)'" th:text="${play.second}" th:data-value="${play.first}"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-6">
                                         <ul class="list-unstyled mb-0">
-                                            <li><a href="#!">4부예배</a></li>
-                                            <li><a href="#!">5부예배</a></li>
+                                            <li th:each="play : ${playList}" th:if="${playStat.index % 2 != 0}">
+                                                <a href="#" th:onclick="'goPlayList(event)'" th:text="${play.second}" th:data-value="${play.first}"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -140,6 +141,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" th:src="@{/js/index.js}"></script>
         <script type="text/javascript" th:inline="javascript">
+            console.log([[${sermonListPage}]])
+            console.log([[${channels}]])
             let totalPages = [[${sermonListPage.totalPages}]];
             let startPage = [[${sermonListPage.number}]] + 1;
 

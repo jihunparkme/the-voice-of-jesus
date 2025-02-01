@@ -4,6 +4,8 @@ import com.jesus.voice.aggregate.sermon.domain.Sermon
 import com.jesus.voice.aggregate.sermon.domain.SermonRepository
 import com.jesus.voice.aggregate.sermon.dto.SermonRequest
 import com.jesus.voice.aggregate.sermon.dto.SermonResponse
+import com.jesus.voice.common.dtos.AYMCPlayList
+import com.jesus.voice.common.dtos.ChannelType
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
@@ -18,7 +20,11 @@ class SermonService(
         param: SermonRequest,
         pageable: PageRequest,
     ): Page<SermonResponse> {
-        val findSermons = sermonRepository.findSermons(param, pageable)
+        val request = param.copy(
+            channel = param.channel.takeIf { it.isNotBlank() }?.let { ChannelType.from(it).title } ?: param.channel,
+            playList = param.playList.takeIf { it.isNotBlank() }?.let { AYMCPlayList.from(it).title } ?: param.playList
+        )
+        val findSermons = sermonRepository.findSermons(request, pageable)
         return findSermons.map(Sermon::toResponse)
     }
 }

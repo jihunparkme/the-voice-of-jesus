@@ -12,8 +12,12 @@ function goSearch() {
 }
 
 function goChannel(event) {
-    let channelName = event.target.getAttribute("data-value")
-    $("#channel").val(channelName);
+    $("#channel").val(event.target.getAttribute("data-value"));
+    searchRecordList(0)
+}
+
+function goPlayList(event) {
+    $("#playList").val(event.target.getAttribute("data-value"));
     searchRecordList(0)
 }
 

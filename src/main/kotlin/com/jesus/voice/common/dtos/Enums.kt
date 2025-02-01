@@ -12,10 +12,11 @@ enum class ChannelType(
 
     companion object {
         fun from(value: String): ChannelType {
-            return entries.firstOrNull { it.title == value } ?: AYMC
+            return entries.firstOrNull { it.name == value } ?: AYMC
         }
 
-        fun channelList(): List<String> = ChannelType.entries.map { it.title }
+        fun channelList(): List<Pair<String, String>> =
+            ChannelType.entries.map { Pair(it.name, it.title) }
     }
 }
 
@@ -24,7 +25,7 @@ interface PlayListChannel {
     val id: String
 }
 
-fun getPlayList(channel: String): List<String> {
+fun getPlayList(channel: String): List<Pair<String, String>> {
     return when (ChannelType.from(channel)) {
         AYMC -> AYMCPlayList.titleList()
         else -> emptyList()
@@ -45,6 +46,11 @@ enum class AYMCPlayList(
     fun toDocument() = PlayList(this.title, this.id)
 
     companion object {
-        fun titleList(): List<String> = entries.map { it.title }
+        fun from(value: String): AYMCPlayList {
+            return AYMCPlayList.entries.firstOrNull { it.name == value } ?: SUNDAY_1
+        }
+
+        fun titleList(): List<Pair<String, String>> =
+            entries.map { Pair(it.name, it.title) }
     }
 }
