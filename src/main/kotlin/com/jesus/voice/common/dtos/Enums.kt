@@ -7,12 +7,13 @@ enum class ChannelType(
     val title: String,
     val url: String,
 ) {
+    ALL("", ""),
     AYMC("안양감리교회", "https://www.aymc.org/"),
     ;
 
     companion object {
         fun from(value: String): ChannelType {
-            return entries.firstOrNull { it.name == value } ?: AYMC
+            return entries.firstOrNull { it.name == value } ?: ALL
         }
 
         fun channelList(): List<Pair<String, String>> =

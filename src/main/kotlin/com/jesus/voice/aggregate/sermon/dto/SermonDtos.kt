@@ -9,7 +9,7 @@ data class SermonRequest(
     val size: Int = 10,
 
     val search: String = "",
-    val channel: String = ChannelType.AYMC.name,
+    val channel: String = ChannelType.ALL.name,
     val playList: String = "",
 )
 

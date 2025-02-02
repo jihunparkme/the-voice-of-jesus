@@ -70,19 +70,9 @@
                             <div class="card-header">Channel</div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <ul class="list-unstyled mb-0">
-                                            <li th:each="channel : ${channels}" th:if="${channelStat.index % 2 == 0}">
-                                                <a href="#" th:onclick="'goChannel(event)'" th:text="${channel.second}" th:data-value="${channel.first}"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <ul class="list-unstyled mb-0">
-                                            <li th:each="channel : ${channels}" th:if="${channelStat.index % 2 != 0}">
-                                                <a href="#" th:onclick="'goChannel(event)'" th:text="${channel.second}" th:data-value="${channel.first}"></a>
-                                            </li>
-                                        </ul>
+                                    <div class="col-md-6" th:each="channel, iterStat : ${channels}">
+                                        <a href="#" class="d-block" th:if="${iterStat.index == 0}" th:onclick="'goChannel(event)'" data-value="ALL">전체</a>
+                                        <a href="#" class="d-block" th:onclick="'goChannel(event)'" th:text="${channel.second}" th:data-value="${channel.first}"></a>
                                     </div>
                                 </div>
                             </div>
