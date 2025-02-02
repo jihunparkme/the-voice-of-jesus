@@ -61,7 +61,7 @@
                             <div class="card-body">
                                 <div class="input-group">
                                     <input type="text" id="search" name="search" th:value="${param.search}" class="form-control" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                    <button type="button" th:onclick="'goSearch()'" class="btn btn-primary" id="button-search">Search</button>
+                                    <button type="submit" th:onclick="'goSearch()'" class="btn btn-primary" id="button-search">Search</button>
                                     <button type="button" th:onclick="'resetFilter()'" class="btn btn-danger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">

@@ -22,7 +22,7 @@ class SermonService(
     ): Page<SermonResponse> {
         val request = param.copy(
             channel = param.channel.takeIf { it.isNotBlank() }?.let { ChannelType.from(it).title } ?: param.channel,
-            playList = param.playList.takeIf { it.isNotBlank() }?.let { AYMCPlayList.from(it).title } ?: param.playList
+            playList = param.playList.takeIf { it.isNotBlank() }?.let { AYMCPlayList.from(it) } ?: param.playList
         )
         val findSermons = sermonRepository.findSermons(request, pageable)
         return findSermons.map(Sermon::toResponse)

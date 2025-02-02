@@ -3,7 +3,7 @@ function searchRecordList(page) {
         page = 0;
     }
 
-    $("#page").val(page);
+    document.getElementById('page').value = 0;
     $("#form").submit();
 }
 

@@ -10,7 +10,7 @@ data class SermonRequest(
 
     val search: String = "",
     val channel: String = ChannelType.ALL.name,
-    val playList: String = "",
+    val playList: String = ChannelType.ALL.name,
 )
 
 data class SermonResponse(

@@ -29,7 +29,7 @@ interface PlayListChannel {
 fun getPlayList(channel: String): List<Pair<String, String>> {
     return when (ChannelType.from(channel)) {
         AYMC -> AYMCPlayList.titleList()
-        else -> emptyList()
+        else -> AYMCPlayList.titleList()
     }
 }
 
@@ -47,8 +47,8 @@ enum class AYMCPlayList(
     fun toDocument() = PlayList(this.title, this.id)
 
     companion object {
-        fun from(value: String): AYMCPlayList {
-            return AYMCPlayList.entries.firstOrNull { it.name == value } ?: SUNDAY_1
+        fun from(value: String): String {
+            return AYMCPlayList.entries.firstOrNull { it.name == value }?.title ?: ""
         }
 
         fun titleList(): List<Pair<String, String>> =
