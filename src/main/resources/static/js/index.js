@@ -12,7 +12,11 @@ function goSearch() {
 }
 
 function goChannel(event) {
-    $("#channel").val(event.target.getAttribute("data-value"));
+    const channel = event.target.getAttribute("data-value");
+    if (channel === "ALL") {
+        resetParam()
+    }
+    $("#channel").val(channel);
     searchRecordList(0)
 }
 
@@ -21,10 +25,14 @@ function goPlayList(event) {
     searchRecordList(0)
 }
 
-function resetFilter() {
+function resetParam() {
     document.getElementById('page').value = null;
     document.getElementById('channel').value = null;
     document.getElementById('search').value = null;
     document.getElementById('playList').value = null;
+}
+
+function resetFilter() {
+    resetParam();
     searchRecordList(0)
 }

@@ -82,19 +82,8 @@
                             <div class="card-header">PlayList</div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <ul class="list-unstyled mb-0">
-                                            <li th:each="play : ${playList}" th:if="${playStat.index % 2 == 0}">
-                                                <a href="#" th:onclick="'goPlayList(event)'" th:text="${play.second}" th:data-value="${play.first}"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <ul class="list-unstyled mb-0">
-                                            <li th:each="play : ${playList}" th:if="${playStat.index % 2 != 0}">
-                                                <a href="#" th:onclick="'goPlayList(event)'" th:text="${play.second}" th:data-value="${play.first}"></a>
-                                            </li>
-                                        </ul>
+                                    <div class="col-md-6" th:each="play, iterStat : ${playList}">
+                                        <a href="#" class="d-block" th:onclick="'goPlayList(event)'" th:text="${play.second}" th:data-value="${play.first}"></a>
                                     </div>
                                 </div>
                             </div>
