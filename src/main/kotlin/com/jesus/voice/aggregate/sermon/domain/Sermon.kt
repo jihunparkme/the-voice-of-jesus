@@ -25,19 +25,10 @@ class Sermon(
 ) {
     fun toResponse(): SermonResponse {
         return SermonResponse(
-            videoId = videoId,
-            videoUrl = videoUrl,
+            id = id,
             thumbnailUrl = thumbnailUrl,
-            title = title,
-            playList = playList,
-            publisher = publisher,
-            streamingTime = streamingTime,
             uploadedDate = uploadedDate,
-            beforeDate = beforeDate,
-            transcript = transcript,
-            summary = summary,
-            wordCount = wordCount,
-            createdDt = createdDt,
+            title = title,
         )
     }
 }
