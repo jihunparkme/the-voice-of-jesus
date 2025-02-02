@@ -21,6 +21,14 @@
                     <div class="row">
                         <div class="container">
                             <div class="row post-container">
+                                <div class="col-md-6 post-item" th:if="${sermonListPage.totalElements} == 0">
+                                    <div class="card mb-4">
+                                        <div class="card-body">
+                                            <div class="small text-muted">업로드된 영상이 없습니다.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6 post-item" th:each="sermon : ${sermonListPage.content}">
                                     <div class="card mb-4">
                                         <a th:href="${sermon.videoUrl}">
