@@ -11,7 +11,7 @@ data class SermonRequest(
     val playList: String = ChannelType.ALL.name,
 )
 
-data class SermonResponse(
+data class SermonListResponse(
     val id: String?,
     val thumbnailUrl: String,
     val title: String,

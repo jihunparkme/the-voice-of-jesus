@@ -25,7 +25,7 @@ class IndexController(
         val pageable = PageRequest.of(
             param.page, param.size, Sort.by("createdDt").descending(),
         )
-        val sermonListPage = sermonService.findSermons(param, pageable)
+        val sermonListPage = sermonService.findSermonList(param, pageable)
 
         model.apply {
             addAttribute("sermonListPage", sermonListPage)
