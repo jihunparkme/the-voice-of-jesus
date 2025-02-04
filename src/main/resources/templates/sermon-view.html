@@ -27,35 +27,38 @@
                     <div class="entry-meta">
                         <ul>
                             <li class="d-flex align-items-center">
-                                <i class="bi bi-clock"></i>[(${sermon.createdDt})]
+                                게시일: <i class="bi bi-clock"></i>[(${sermon.createdDt})]
                             </li>
                         </ul>
                     </div>
 
+                    <div class="entry-content">
+                        <h5 class="font-white" style="font-weight: bold;">말씀 정보</h5>
+                        <div>
+                            <span>채널명: [(${sermon.publisher})]</span><br/>
+                            <span>업로드 일자: [(${sermon.uploadedDate})]</span><br/>
+                            <span>재생목록: [(${sermon.playList.title})]</span><br/>
+                            <br/>
+                        </div>
+                    </div>
+
                     <!--
-                    val playList: PlayList = PlayList(),
-                    val publisher: String = "",
-                    val streamingTime: String = "",
-                    val uploadedDate: String = "",
-                    val beforeDate: String = "",
                     val transcript: String = "",
                     val wordCount: WordCount = emptyMap(),
                     -->
 
-                    <div class="entry-content">
+                    <div class="entry-content" style="margin-top: 10px;">
                         <iframe class="iframe-container"
                                 th:src="@{https://www.youtube.com/embed/{id}(id=${sermon.videoId})}"
                                 title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                 width="25" height="25" version="1.1" id="Layer_1" viewBox="0 0 461.001 461.001" xml:space="preserve">
-                                    <g><path style="fill:#F61C0D;" d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728   c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137   C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607   c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"/></g>
-                                </svg>
-                            <a target="_blank" th:href="@{${sermon.videoUrl}}">바로가기</a>
-                        </p>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             width="25" height="25" version="1.1" id="Layer_1" viewBox="0 0 461.001 461.001" xml:space="preserve">
+                                        <g><path style="fill:#F61C0D;" d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728   c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137   C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607   c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"/></g>
+                                    </svg>
+                        <a target="_blank" th:href="@{${sermon.videoUrl}}">바로가기</a>
                     </div>
 
                     <div class="entry-content">
