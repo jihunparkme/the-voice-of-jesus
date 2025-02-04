@@ -37,7 +37,6 @@ class Sermon(
             id = id ?: "",
             videoId = videoId,
             videoUrl = videoUrl,
-            thumbnailUrl = thumbnailUrl,
             title = title,
             playList = playList,
             publisher = publisher,

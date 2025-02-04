@@ -24,7 +24,6 @@ data class SermonViewResponse(
     val id: String = "",
     val videoId: String = "",
     val videoUrl: String = "",
-    val thumbnailUrl: String = "",
     val title: String = "",
     val playList: PlayList = PlayList(),
     val publisher: String = "",
