@@ -1,6 +1,5 @@
 package com.jesus.voice.external.komoran
 
-import com.jesus.voice.external.komoran.MorphemeAnalyzer
 import io.kotest.matchers.shouldBe
 import java.nio.file.Files
 import java.nio.file.Paths

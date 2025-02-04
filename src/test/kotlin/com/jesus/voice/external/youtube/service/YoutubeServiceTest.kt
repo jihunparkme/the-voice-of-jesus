@@ -2,7 +2,6 @@ package com.jesus.voice.external.youtube.service
 
 import com.jesus.voice.common.IntegrationTest
 import com.jesus.voice.external.youtube.dto.VideoId
-import com.jesus.voice.external.youtube.service.YoutubeService
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe

@@ -1,7 +1,6 @@
 package com.jesus.voice.external.youtube.extractor
 
 import com.jesus.voice.common.exception.TranscriptDisabledException
-import com.jesus.voice.external.youtube.extractor.TranscriptUrlExtractor
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
