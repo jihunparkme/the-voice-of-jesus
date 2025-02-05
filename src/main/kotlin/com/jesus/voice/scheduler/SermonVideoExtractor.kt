@@ -1,9 +1,9 @@
 package com.jesus.voice.scheduler
 
-import com.jesus.voice.common.dtos.AYMCPlayList
-import com.jesus.voice.common.util.logger
 import com.jesus.voice.aggregate.sermon.domain.Sermon
 import com.jesus.voice.aggregate.sermon.domain.SermonRepository
+import com.jesus.voice.common.dtos.AYMCPlayList
+import com.jesus.voice.common.util.logger
 import com.jesus.voice.external.komoran.MorphemeAnalyzer
 import com.jesus.voice.external.openai.gemini.service.GeminiChatService
 import com.jesus.voice.external.youtube.dto.PlayListVideo
@@ -26,6 +26,8 @@ class SermonVideoExtractor(
         AYMCPlayList.SUNDAY_1,
         AYMCPlayList.DADRIM,
         AYMCPlayList.DAWN,
+        AYMCPlayList.FRIDAY_RECOVERY,
+        AYMCPlayList.SUNDAY,
     ).forEach { channel ->
         runBlocking {
             launch {
