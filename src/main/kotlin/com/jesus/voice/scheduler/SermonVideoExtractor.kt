@@ -12,6 +12,7 @@ import com.jesus.voice.external.youtube.service.YoutubeService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
@@ -20,6 +21,8 @@ class SermonVideoExtractor(
     private val youtubeService: YoutubeService,
     private val sermonRepository: SermonRepository,
     private val geminiChatService: GeminiChatService,
+    @Value("\${app.random.start}") var randomStart: Long,
+    @Value("\${app.random.end}") var randomEnd: Long,
 ) {
     @Scheduled(cron = "0 0 20 * * ?")
     fun runScheduler() = listOf(
@@ -68,7 +71,7 @@ class SermonVideoExtractor(
     }
 
     private suspend fun sleepRandomDuration() {
-        val randomDuration = (10000L..20000L).random()
+        val randomDuration = (randomStart..randomEnd).random()
         log.info("🌙🌙🌙 Sleeping for $randomDuration ms...")
         delay(randomDuration)
     }

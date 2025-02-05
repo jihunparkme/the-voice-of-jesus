@@ -26,6 +26,11 @@ management:
         include: "*"
       base-path: /management/actuator
 
+app:
+  random:
+    start: 10000
+    end: 20000
+
 logging:
   level:
     org:
