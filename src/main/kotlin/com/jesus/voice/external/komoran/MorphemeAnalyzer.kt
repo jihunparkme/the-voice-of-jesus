@@ -16,6 +16,8 @@ object MorphemeAnalyzer {
         val tokenList = analysisResult.tokenList
 
         val refinedContent = applyNewLine(tokenList, replacedContent)
+                                .applyParagraph()
+                                .removeWhiteList()
         val wordCount = getWordCount(tokenList)
 
         return Pair(refinedContent, wordCount)
@@ -39,6 +41,14 @@ object MorphemeAnalyzer {
             .map { it.getEndIndex() }
     )
 
+    private fun String.applyParagraph(): String =
+        split("\n")
+            .chunked(5)
+            .joinToString("\n\n") { it.joinToString("\n") }
+
+    private fun String.removeWhiteList(): String =
+        replace(WHITE_LIST.joinToString("|") { Regex.escape(it) }.toRegex(), "")
+
     private fun String.insertNewlines(positions: List<Int>): String =
         buildString {
             var offset = 0
@@ -57,3 +67,4 @@ object MorphemeAnalyzer {
 
 typealias RefinedContent = String
 typealias WordCount = Map<String, Int>
+val WHITE_LIST: List<String> = listOf("[음악] ")
