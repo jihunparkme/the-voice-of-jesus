@@ -42,10 +42,6 @@
                         </div>
                     </div>
 
-                    <!--
-                    val wordCount: WordCount = emptyMap(),
-                    -->
-
                     <div class="entry-content" style="margin-top: 10px;">
                         <iframe class="iframe-container"
                                 th:src="@{https://www.youtube.com/embed/{id}(id=${sermon.videoId})}"
@@ -70,8 +66,10 @@
                         <div class="text-container">[(${sermon.transcript})]</div>
                     </div>
 
-
-
+                    <!--
+  val wordCount: WordCount = emptyMap(),
+  -->
+                    <div class="word-cloud"></div>
 
                     <div class="entry-content">
                         <h2 class="font-white" style="margin-top: 50px;">Profile Details</h2>
@@ -113,5 +111,58 @@
 </section>
 
 <div th:replace="~{common/footer}"></div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+<script>
+    const words = [
+        { text: "Coffee", size: 50 },
+        { text: "Roasting", size: 40 },
+        { text: "Beans", size: 35 },
+        { text: "Aroma", size: 30 },
+        { text: "Brewing", size: 25 },
+        { text: "Flavor", size: 45 },
+        { text: "Espresso", size: 38 },
+        { text: "Latte", size: 32 },
+        { text: "Cappuccino", size: 28 },
+        { text: "Extraction", size: 22 }
+    ];
+
+    const pageWidth = window.innerWidth;
+    console.log(pageWidth);
+
+
+    const width = pageWidth - 100;
+    const height = 400;
+
+    const layout = d3.layout.cloud()
+        .size([width, height])
+        .words(words.map(d => ({ text: d.text, size: d.size })))
+        .padding(5)
+        .rotate(() => (Math.random() > 0.5 ? 0 : 90))
+        .font("Impact")
+        .fontSize(d => d.size)
+        .on("end", draw);
+
+    layout.start();
+
+    function draw(words) {
+        const svg = d3.select(".word-cloud")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+        svg.selectAll("text")
+            .data(words)
+            .enter().append("text")
+            .style("font-family", "Impact")
+            .style("font-size", d => `${d.size}px`)
+            .style("fill", () => `hsl(${Math.random() * 360}, 100%, 50%)`)
+            .attr("text-anchor", "middle")
+            .attr("transform", d => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`)
+            .text(d => d.text);
+    }
+</script>
 </body>
 </html>
