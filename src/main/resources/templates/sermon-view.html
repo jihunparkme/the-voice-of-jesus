@@ -49,11 +49,13 @@
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                             width="25" height="25" version="1.1" id="Layer_1" viewBox="0 0 461.001 461.001" xml:space="preserve">
-                                        <g><path style="fill:#F61C0D;" d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728   c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137   C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607   c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"/></g>
-                                    </svg>
-                        <a target="_blank" th:href="@{${sermon.videoUrl}}">바로가기</a>
+                        <div style="display: flex; align-items: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 width="25" height="25" version="1.1" id="Layer_1" viewBox="0 0 461.001 461.001" xml:space="preserve">
+                                            <g><path style="fill:#F61C0D;" d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728   c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137   C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607   c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"/></g>
+                                        </svg>
+                            &nbsp<a target="_blank" th:href="@{${sermon.videoUrl}}">바로가기</a>
+                        </div>
                     </div>
 
                     <div class="entry-content">
@@ -66,9 +68,6 @@
                         <div class="text-container">[(${sermon.transcript})]</div>
                     </div>
 
-                    <!--
-  val wordCount: WordCount = emptyMap(),
-  -->
                     <div class="word-cloud"></div>
 
                     <div class="entry-content">
@@ -113,6 +112,12 @@
 <div th:replace="~{common/footer}"></div>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    const sermon = [[${sermon.wordCount}]];
+    console.log(sermon)
+    /*]]>*/
+</script>
 <script>
     const words = [
         { text: "Coffee", size: 50 },
@@ -131,7 +136,7 @@
     console.log(pageWidth);
 
 
-    const width = pageWidth - 100;
+    const width = pageWidth / 2;
     const height = 400;
 
     const layout = d3.layout.cloud()
