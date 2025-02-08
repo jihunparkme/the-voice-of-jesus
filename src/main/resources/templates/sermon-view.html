@@ -63,7 +63,9 @@
                         <div class="text-container">[(${sermon.summary})]</div>
                     </div>
 
-                    <div class="entry-content">
+                    <button type="button" id="transcript-btn" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+
+                    <div class="entry-content" id="transcript">
                         <h3 class="font-white" style="margin-top: 50px;">말씀 자막</h3>
                         <div class="text-container">[(${sermon.transcript})]</div>
                     </div>
@@ -105,6 +107,7 @@
 <div th:replace="~{common/footer}"></div>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+<script type="text/javascript" th:src="@{/js/view.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
     const sermon = [[${sermon.wordCount}]];
