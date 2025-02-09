@@ -42,7 +42,7 @@ object MorphemeAnalyzer {
     )
 
     private fun String.applyParagraph(): String =
-        split("\n")
+        split("\n").map { it.trim() }
             .chunked(5)
             .joinToString("\n\n") { it.joinToString("\n") }
 
