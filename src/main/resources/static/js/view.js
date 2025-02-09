@@ -4,9 +4,9 @@ const transcript = document.getElementById("transcript");
 button.addEventListener("click", function () {
     if (transcript.style.display === "none") {
         transcript.style.display = "block";
-        button.textContent = "글 숨기기";
+        button.innerHTML = "전체 자막 접기 <i class=\"bi bi-caret-up-fill\"></i>"
     } else {
         transcript.style.display = "none";
-        button.textContent = "글 보이기";
+        button.innerHTML = "전체 자막 펼치기 <i class=\"bi bi-caret-down-fill\"></i>"
     }
 });

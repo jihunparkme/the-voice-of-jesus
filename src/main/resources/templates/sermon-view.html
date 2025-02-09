@@ -27,17 +27,17 @@
                     <div class="entry-meta">
                         <ul>
                             <li class="d-flex align-items-center">
-                                게시일: <i class="bi bi-clock"></i>[(${sermon.createdDt})]
+                                <i class="bi bi-clock"></i> 게시일: [(${sermon.createdDt})]
                             </li>
                         </ul>
                     </div>
 
                     <div class="entry-content">
-                        <h5 class="font-white" style="font-weight: bold;">말씀 정보</h5>
+                        <h5 class="font-white" style="font-weight: bold;"><i class="bi bi-info-circle"></i> 말씀 정보</h5>
                         <div>
-                            <span>채널명: [(${sermon.publisher})]</span><br/>
-                            <span>업로드 일자: [(${sermon.uploadedDate})]</span><br/>
-                            <span>재생목록: [(${sermon.playList.title})]</span><br/>
+                            <span>• 채널명: [(${sermon.publisher})]</span><br/>
+                            <span>• 업로드 일자: [(${sermon.uploadedDate})]</span><br/>
+                            <span>• 재생목록: [(${sermon.playList.title})]</span><br/>
                             <br/>
                         </div>
                     </div>
@@ -63,10 +63,12 @@
                         <div class="text-container">[(${sermon.summary})]</div>
                     </div>
 
-                    <button type="button" id="transcript-btn" class="btn btn-secondary btn-lg btn-block">전체 자막 보기</button>
+                    <button type="button" id="transcript-btn" class="btn btn-secondary">
+                        전체 자막 펼치기 <i class="bi bi-caret-down-fill"></i>
+                    </button>
 
                     <div class="entry-content" id="transcript" style="display: none;">
-                        <h3 class="font-white" style="margin-top: 50px;">말씀 자막</h3>
+                        <h3 class="font-white">말씀 자막</h3>
                         <div class="text-container">[(${sermon.transcript})]</div>
                     </div>
 
