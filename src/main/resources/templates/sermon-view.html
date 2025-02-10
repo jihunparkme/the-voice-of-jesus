@@ -62,13 +62,13 @@
                         <h3 class="font-white" style="margin-top: 50px;">
                             <i class="bi bi-journal-bookmark"></i> 말씀 요약
                         </h3>
-                        <div class="text-container">[(${sermon.summary})]</div>
+                        <div class="text-container" th:text="${sermon.summary.isEmpty() ? '자막이 제공되지 않는 영상입니다.' : sermon.summary}"></div>
                     </div>
 
                     <div class="entry-content" style="margin-top: 50px">
                         <h3 class="font-white"><i class="bi bi-journal-text"></i> 말씀 자막</h3>
 
-                        <div class="accordion">
+                        <div class="accordion" th:if="${not #strings.isEmpty(sermon.transcript)}">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" id="transcript-btn" type="button" data-bs-toggle="collapse" data-bs-target="#transcript" aria-expanded="true" aria-controls="collapseOne">
@@ -82,9 +82,11 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="text-container" th:if="${sermon.transcript.isEmpty()}">자막이 제공되지 않는 영상입니다.</div>
                     </div>
 
-                    <div class="entry-content" style="margin-top: 50px">
+                    <div class="entry-content" th:if="${sermon.wordCount.size() > 0}" style="margin-top: 50px">
                         <h3 class="font-white"><i class="bi bi-file-earmark-word"></i> 주요 단어</h3>
 
                         <div class="word-cloud"></div>
@@ -131,7 +133,7 @@
     const words = Object.entries(wordCount).map(([text, size]) => ({ text, size }));
 
     const pageWidth = window.innerWidth;
-    const width = pageWidth / 1.5;
+    const width = pageWidth / 1.8;
     const height = 400;
     const layout = d3.layout.cloud()
         .size([width, height])
