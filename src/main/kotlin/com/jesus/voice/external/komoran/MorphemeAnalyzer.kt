@@ -30,7 +30,7 @@ object MorphemeAnalyzer {
             .eachCount().entries
             .sortedByDescending { it.value }
             .associate { it.key to it.value }
-            .filterValues { it > 10 }
+            .filterValues { it > 9 }
 
     private fun applyNewLine(
         tokenList: List<Token>,
