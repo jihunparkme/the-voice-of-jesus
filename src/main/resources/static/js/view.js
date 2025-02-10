@@ -2,11 +2,13 @@ const button = document.getElementById("transcript-btn");
 const transcript = document.getElementById("transcript");
 
 button.addEventListener("click", function () {
-    if (transcript.style.display === "none") {
-        transcript.style.display = "block";
-        button.innerHTML = "전체 자막 접기 <i class=\"bi bi-caret-up-fill\"></i>"
+    if (transcript.classList.contains("show")) {
+        transcript.classList.remove("show")
+        button.classList.add("collapsed")
+        button.innerHTML = "전체 자막 펼치기"
     } else {
-        transcript.style.display = "none";
-        button.innerHTML = "전체 자막 펼치기 <i class=\"bi bi-caret-down-fill\"></i>"
+        transcript.classList.add("show")
+        button.classList.remove("collapsed")
+        button.innerHTML = "전체 자막 접기"
     }
 });

@@ -535,14 +535,9 @@
  }
 
 .text-container {
-    width: 100%;
     white-space: pre-wrap;
-    overflow-wrap: break-word;
-    border: 1px solid #ccc;
-    padding: 15px;
-    background: #f9f9f9;
 }
 
-#transcript-btn {
+#accordion {
     margin-top: 15px;
 }
