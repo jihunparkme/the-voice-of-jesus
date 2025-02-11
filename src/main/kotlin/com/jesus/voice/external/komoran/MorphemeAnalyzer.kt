@@ -67,4 +67,7 @@ object MorphemeAnalyzer {
 
 typealias RefinedContent = String
 typealias WordCount = Map<String, Int>
-val WHITE_LIST: List<String> = listOf("[음악] ")
+val WHITE_LIST: List<String> = listOf(
+    "[음악] ", "[음악]", " [음악]",
+    "[박수] ", "[박수]", " [박수]",
+    )

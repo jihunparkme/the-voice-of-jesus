@@ -3,6 +3,7 @@ package com.jesus.voice.external.youtube.dto
 import com.jesus.voice.aggregate.sermon.domain.PlayList
 import com.jesus.voice.aggregate.sermon.domain.Sermon
 import com.jesus.voice.external.komoran.WordCount
+import java.time.LocalDateTime
 
 data class VideoId(
     val id: String
@@ -29,7 +30,7 @@ data class PlayListVideo(
     val beforeDate: String,
     val transcript: String = "",
     val summary: String = "",
-    val createdDt: String,
+    val createdDt: LocalDateTime,
 ) {
     fun toSermon(
         playList: PlayList,

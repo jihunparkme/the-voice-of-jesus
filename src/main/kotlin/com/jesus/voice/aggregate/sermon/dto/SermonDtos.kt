@@ -3,10 +3,11 @@ package com.jesus.voice.aggregate.sermon.dto
 import com.jesus.voice.aggregate.sermon.domain.PlayList
 import com.jesus.voice.common.dtos.ChannelType
 import com.jesus.voice.external.komoran.WordCount
+import java.time.LocalDateTime
 
 data class SermonRequest(
     val page: Int = 0,
-    val size: Int = 10,
+    val size: Int = 8,
 
     val search: String = "",
     val channel: String = ChannelType.ALL.name,
@@ -18,6 +19,7 @@ data class SermonListResponse(
     val thumbnailUrl: String,
     val title: String,
     val uploadedDate: String,
+    val transcript: String,
 )
 
 data class SermonViewResponse(
@@ -31,7 +33,7 @@ data class SermonViewResponse(
     val transcript: String = "",
     val summary: String = "",
     val wordCount: WordCount = emptyMap(),
-    val createdDt: String = "",
+    val createdDt: LocalDateTime = LocalDateTime.now(),
 ) {
     companion object {
         val EMPTY = SermonViewResponse()

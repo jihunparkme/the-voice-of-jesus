@@ -43,7 +43,12 @@ class SermonRepositoryCustomImpl(
             with(pageable)
         }
 
-        return mongoTemplate.find(query, Sermon::class.java)
-            .let { sermons -> PageImpl(sermons, pageable, mongoTemplate.count(query, Sermon::class.java)) }
+        val total = mongoTemplate.count(Query().apply {
+            if (criteria.isNotEmpty()) addCriteria(Criteria().andOperator(*criteria.toTypedArray()))
+        }, Sermon::class.java)
+
+        val sermons = mongoTemplate.find(query.with(pageable), Sermon::class.java)
+
+        return PageImpl(sermons, pageable, total)
     }
 }

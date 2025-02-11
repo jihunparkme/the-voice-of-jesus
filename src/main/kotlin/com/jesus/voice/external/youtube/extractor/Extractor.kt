@@ -9,8 +9,7 @@ import com.jesus.voice.external.youtube.dto.PlayListVideo
 import com.jesus.voice.external.youtube.dto.Transcript
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
-import java.time.LocalDate
-import kotlin.jvm.Throws
+import java.time.LocalDateTime
 
 object TranscriptUrlExtractor {
     fun extractTranscriptUrl(videoId: String, videoPageHtml: String): String {
@@ -89,7 +88,7 @@ object PlayListExtractor {
                     streamingTime = video?.get("lengthText")?.get("simpleText")?.asText() ?: "",
                     uploadedDate = title.split("_").last(),
                     beforeDate = video?.get("videoInfo")?.get("runs")?.last()?.get("text")?.asText()?.split(": ")?.last() ?: "",
-                    createdDt = LocalDate.now().toString(),
+                    createdDt = LocalDateTime.now(),
                 )
             }.orEmpty()
     }

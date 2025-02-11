@@ -5,6 +5,7 @@ import com.jesus.voice.aggregate.sermon.dto.SermonViewResponse
 import com.jesus.voice.external.komoran.WordCount
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
+import java.time.LocalDateTime
 
 @Document(collection = "sermons")
 class Sermon(
@@ -22,7 +23,7 @@ class Sermon(
     val transcript: String? = null,
     val summary: String? = null,
     val wordCount: WordCount? = null,
-    val createdDt: String,
+    val createdDt: LocalDateTime,
 ) {
     fun toListResponse(): SermonListResponse =
         SermonListResponse(
@@ -30,6 +31,7 @@ class Sermon(
             thumbnailUrl = thumbnailUrl,
             uploadedDate = uploadedDate,
             title = title,
+            transcript = transcript ?: "",
         )
 
     fun toViewResponse(): SermonViewResponse =
