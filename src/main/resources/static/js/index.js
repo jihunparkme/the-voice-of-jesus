@@ -1,14 +1,14 @@
-function searchRecordList(page) {
+function searchSermonList(page) {
     if (page == undefined) {
         page = 0;
     }
 
-    document.getElementById('page').value = 0;
+    document.getElementById('page').value = page;
     $("#form").submit();
 }
 
 function goSearch() {
-    searchRecordList(0)
+    searchSermonList(0)
 }
 
 function goChannel(event) {
@@ -17,12 +17,12 @@ function goChannel(event) {
         resetParam()
     }
     $("#channel").val(channel);
-    searchRecordList(0)
+    searchSermonList(0)
 }
 
 function goPlayList(event) {
     $("#playList").val(event.target.getAttribute("data-value"));
-    searchRecordList(0)
+    searchSermonList(0)
 }
 
 function resetParam() {
@@ -34,5 +34,5 @@ function resetParam() {
 
 function resetFilter() {
     resetParam();
-    searchRecordList(0)
+    searchSermonList(0)
 }
