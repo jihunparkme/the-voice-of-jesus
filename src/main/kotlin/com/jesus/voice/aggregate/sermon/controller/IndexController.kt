@@ -31,7 +31,7 @@ class IndexController(
             addAttribute("sermonListPage", sermonListPage)
             addAttribute("page", param.page)
             addAttribute("channels", ChannelType.channelList())
-            param.channel.takeIf { it.isNotBlank() }?.let { addAttribute("playList", getPlayList(it)) }
+            addAttribute("playList", getPlayList(param.channel))
         }
 
         return "index"
