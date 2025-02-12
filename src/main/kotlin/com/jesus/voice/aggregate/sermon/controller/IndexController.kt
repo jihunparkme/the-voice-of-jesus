@@ -29,9 +29,11 @@ class IndexController(
 
         model.apply {
             addAttribute("sermonListPage", sermonListPage)
+            addAttribute("playLists", getPlayList(param.channel))
+
             addAttribute("page", param.page)
             addAttribute("channels", ChannelType.channelList())
-            addAttribute("playList", getPlayList(param.channel))
+            addAttribute("playList", param.playList)
         }
 
         return "index"
