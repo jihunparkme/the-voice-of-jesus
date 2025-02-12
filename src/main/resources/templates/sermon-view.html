@@ -27,7 +27,7 @@
                     <div class="entry-meta">
                         <ul>
                             <li class="d-flex align-items-center">
-                                <i class="bi bi-clock"></i> 게시일: [(${sermon.createdDt})]
+                                <i class="bi bi-clock"></i> 게시일: [(${#temporals.format(sermon.createdDt, 'yyyy-MM-dd')})]
                             </li>
                         </ul>
                     </div>
