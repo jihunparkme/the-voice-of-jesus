@@ -19,7 +19,9 @@ data class SermonListResponse(
     val thumbnailUrl: String,
     val title: String,
     val uploadedDate: String,
-    val transcript: String,
+    val publisher: String,
+    val playList: String,
+    val hasTranscript: Boolean,
 )
 
 data class SermonViewResponse(

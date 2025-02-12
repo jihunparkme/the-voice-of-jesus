@@ -31,7 +31,9 @@ class Sermon(
             thumbnailUrl = thumbnailUrl,
             uploadedDate = uploadedDate,
             title = title,
-            transcript = transcript ?: "",
+            playList = playList.title,
+            publisher = publisher,
+            hasTranscript = !transcript.isNullOrEmpty(),
         )
 
     fun toViewResponse(): SermonViewResponse =
@@ -50,7 +52,7 @@ class Sermon(
         )
 }
 
-class PlayList(
+data class PlayList(
     val title: String = "",
     val id: String = "",
 )

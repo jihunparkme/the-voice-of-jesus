@@ -35,8 +35,10 @@
                                             <img class="card-img-top" th:src="${sermon.thumbnailUrl}" alt="thumbnail Image"/>
                                         </a>
                                         <div class="card-body">
-                                            <div class="small text-muted" th:text="${sermon.uploadedDate}"></div>
-                                            <h2 class="card-title h4" th:text="${sermon.title}"></h2>
+                                            <div class="text-muted" th:text="${sermon.uploadedDate}"></div>
+                                            <div class="text-muted" th:text="${sermon.publisher + ' / ' + sermon.playList}"></div>
+                                            <h2 class="card-title h5" th:text="${sermon.title}"></h2>
+                                            <div class="card-title red" th:if="${not sermon.hasTranscript}">* 자막이 제공되지 않는 영상입니다.</div>
                                             <a class="btn btn-primary" th:href="@{/sermon/{id}(id=${sermon.id})}">Detail</a>
                                         </div>
                                     </div>
