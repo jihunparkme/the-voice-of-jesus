@@ -7,7 +7,6 @@ import com.jesus.voice.external.youtube.dto.Const.YOUTUBE_WATCH_URL
 import com.jesus.voice.external.youtube.dto.Const.objectMapper
 import com.jesus.voice.external.youtube.dto.PlayListVideo
 import com.jesus.voice.external.youtube.dto.Transcript
-import com.jesus.voice.external.youtube.extractor.PlayListExtractor.UploadDateExtractor.calculateDate
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
 import java.time.LocalDate
@@ -87,30 +86,33 @@ object PlayListExtractor {
                     videoId = videoId,
                     videoUrl = YOUTUBE_WATCH_URL + videoId,
                     thumbnailUrl = video?.get("thumbnail")?.last()?.last()?.get("url")?.asText() ?: "",
-                    title = title,
+                    title = title.refineTitle(),
                     publisher = video?.get("shortBylineText")?.get("runs")?.first()?.get("text")?.asText() ?: "",
                     streamingTime = video?.get("lengthText")?.get("simpleText")?.asText() ?: "",
-                    uploadedDate = calculateDate(beforeDate),
+                    uploadedDate = beforeDate.toUploadedDate(),
                     beforeDate = beforeDate,
                     createdDt = LocalDateTime.now(),
                 )
             }.orEmpty()
     }
 
-    object UploadDateExtractor {
-        fun calculateDate(beforeDate: String): LocalDate {
-            return LocalDate.now()
-        }
-        // N시간 전
-        // N일 전
-        // N주 전
-        // N개월 전
-
-        /**
-         * val text = "3시간 전"
-         * val number = "\\d+".toRegex().find(text)?.value?.toInt()
-         *
-         * println(number) // 출력: 3
-         */
+    fun String.refineTitle(): String {
+        return replace("\\[.*?\\]\\s?".toRegex(), "")
+            .replace("_안양감리교회", "")
     }
+
+    fun String.toUploadedDate(): LocalDate {
+        return LocalDate.now()
+    }
+    // N시간 전
+    // N일 전
+    // N주 전
+    // N개월 전
+
+    /**
+     * val text = "3시간 전"
+     * val number = "\\d+".toRegex().find(text)?.value?.toInt()
+     *
+     * println(number) // 출력: 3
+     */
 }
