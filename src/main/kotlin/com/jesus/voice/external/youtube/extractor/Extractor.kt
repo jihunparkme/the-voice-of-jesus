@@ -7,8 +7,10 @@ import com.jesus.voice.external.youtube.dto.Const.YOUTUBE_WATCH_URL
 import com.jesus.voice.external.youtube.dto.Const.objectMapper
 import com.jesus.voice.external.youtube.dto.PlayListVideo
 import com.jesus.voice.external.youtube.dto.Transcript
+import com.jesus.voice.external.youtube.extractor.PlayListExtractor.UploadDateExtractor.calculateDate
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 object TranscriptUrlExtractor {
@@ -79,6 +81,8 @@ object PlayListExtractor {
                 val video = it.get("playlistVideoRenderer")
                 val title = video?.get("title")?.get("runs")?.first()?.get("text")?.asText() ?: ""
                 val videoId = video?.get("videoId")?.asText() ?: ""
+                val beforeDate =
+                    video?.get("videoInfo")?.get("runs")?.last()?.get("text")?.asText()?.split(": ")?.last() ?: ""
                 PlayListVideo(
                     videoId = videoId,
                     videoUrl = YOUTUBE_WATCH_URL + videoId,
@@ -86,10 +90,27 @@ object PlayListExtractor {
                     title = title,
                     publisher = video?.get("shortBylineText")?.get("runs")?.first()?.get("text")?.asText() ?: "",
                     streamingTime = video?.get("lengthText")?.get("simpleText")?.asText() ?: "",
-                    uploadedDate = title.split("_").last(),
-                    beforeDate = video?.get("videoInfo")?.get("runs")?.last()?.get("text")?.asText()?.split(": ")?.last() ?: "",
+                    uploadedDate = calculateDate(beforeDate),
+                    beforeDate = beforeDate,
                     createdDt = LocalDateTime.now(),
                 )
             }.orEmpty()
+    }
+
+    object UploadDateExtractor {
+        fun calculateDate(beforeDate: String): LocalDate {
+            return LocalDate.now()
+        }
+        // N시간 전
+        // N일 전
+        // N주 전
+        // N개월 전
+
+        /**
+         * val text = "3시간 전"
+         * val number = "\\d+".toRegex().find(text)?.value?.toInt()
+         *
+         * println(number) // 출력: 3
+         */
     }
 }

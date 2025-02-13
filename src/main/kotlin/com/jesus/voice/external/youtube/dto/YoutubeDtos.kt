@@ -3,6 +3,7 @@ package com.jesus.voice.external.youtube.dto
 import com.jesus.voice.aggregate.sermon.domain.PlayList
 import com.jesus.voice.aggregate.sermon.domain.Sermon
 import com.jesus.voice.external.komoran.WordCount
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class VideoId(
@@ -26,7 +27,7 @@ data class PlayListVideo(
     val title: String,
     val publisher: String,
     val streamingTime: String,
-    val uploadedDate: String,
+    val uploadedDate: LocalDate = LocalDate.now(),
     val beforeDate: String,
     val transcript: String = "",
     val summary: String = "",

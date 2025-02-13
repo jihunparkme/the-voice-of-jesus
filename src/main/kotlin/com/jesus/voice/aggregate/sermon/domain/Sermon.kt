@@ -5,6 +5,7 @@ import com.jesus.voice.aggregate.sermon.dto.SermonViewResponse
 import com.jesus.voice.external.komoran.WordCount
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Document(collection = "sermons")
@@ -18,7 +19,7 @@ class Sermon(
     val playList: PlayList,
     val publisher: String,
     val streamingTime: String,
-    val uploadedDate: String,
+    val uploadedDate: LocalDate,
     val beforeDate: String,
     val transcript: String? = null,
     val summary: String? = null,

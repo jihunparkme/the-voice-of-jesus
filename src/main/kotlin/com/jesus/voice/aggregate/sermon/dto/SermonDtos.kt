@@ -3,6 +3,7 @@ package com.jesus.voice.aggregate.sermon.dto
 import com.jesus.voice.aggregate.sermon.domain.PlayList
 import com.jesus.voice.common.dtos.ChannelType
 import com.jesus.voice.external.komoran.WordCount
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class SermonRequest(
@@ -18,7 +19,7 @@ data class SermonListResponse(
     val id: String?,
     val thumbnailUrl: String,
     val title: String,
-    val uploadedDate: String,
+    val uploadedDate: LocalDate,
     val publisher: String,
     val playList: String,
     val hasTranscript: Boolean,
@@ -31,7 +32,7 @@ data class SermonViewResponse(
     val title: String = "",
     val playList: PlayList = PlayList(),
     val publisher: String = "",
-    val uploadedDate: String = "",
+    val uploadedDate: LocalDate = LocalDate.now(),
     val transcript: String = "",
     val summary: String = "",
     val wordCount: WordCount = emptyMap(),
