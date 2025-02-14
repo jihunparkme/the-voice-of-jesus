@@ -1,9 +1,11 @@
 package com.jesus.voice.external.youtube.extractor
 
 import com.jesus.voice.external.youtube.extractor.PlayListExtractor.refineTitle
+import com.jesus.voice.external.youtube.extractor.PlayListExtractor.toUploadedDate
 import io.kotest.matchers.shouldBe
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.time.LocalDate
 import kotlin.test.Test
 
 class PlayListExtractorTest {
@@ -46,5 +48,37 @@ class PlayListExtractorTest {
 
         title = "[안양감리교회 주일1부예배] \"두려움을 이기는 힘, 절제\" (딤후 1:7-8)_안양감리교회 천주람 목사_2025.2.9"
         title.refineTitle() shouldBe "\"두려움을 이기는 힘, 절제\" (딤후 1:7-8) 천주람 목사_2025.2.9"
+    }
+
+    @Test
+    fun to_uploaded_date_success() {
+        val date = LocalDate.of(2024, 11, 3)
+
+        var beforeDay = "2시간 전"
+        beforeDay.toUploadedDate(date) shouldBe LocalDate.of(2024, 11, 3)
+        beforeDay = "10시간 전"
+        beforeDay.toUploadedDate(date) shouldBe LocalDate.of(2024, 11, 3)
+
+        beforeDay = "1일 전"
+        beforeDay.toUploadedDate(date) shouldBe LocalDate.of(2024, 11, 2)
+        beforeDay = "13일 전"
+        beforeDay.toUploadedDate(date) shouldBe LocalDate.of(2024, 10, 21)
+
+        beforeDay = "1주 전"
+        beforeDay.toUploadedDate(date) shouldBe LocalDate.of(2024, 10, 27)
+        beforeDay = "3주 전"
+        beforeDay.toUploadedDate(date) shouldBe LocalDate.of(2024, 10, 13)
+
+        beforeDay = "1개월 전"
+        beforeDay.toUploadedDate(date) shouldBe LocalDate.of(2024, 10, 3)
+        beforeDay = "5개월 전"
+        beforeDay.toUploadedDate(date) shouldBe LocalDate.of(2024, 6, 3)
+    }
+
+    @Test
+    fun to_uploaded_date_fail() {
+        var beforeDay = ""
+        beforeDay = "3분 전"
+        beforeDay = "방금"
     }
 }

@@ -9,6 +9,7 @@ import com.jesus.voice.external.youtube.dto.PlayListVideo
 import com.jesus.voice.external.youtube.dto.Transcript
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
+import org.springframework.cglib.core.Local
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -89,7 +90,7 @@ object PlayListExtractor {
                     title = title.refineTitle(),
                     publisher = video?.get("shortBylineText")?.get("runs")?.first()?.get("text")?.asText() ?: "",
                     streamingTime = video?.get("lengthText")?.get("simpleText")?.asText() ?: "",
-                    uploadedDate = beforeDate.toUploadedDate(),
+                    uploadedDate = beforeDate.toUploadedDate(LocalDate.now()),
                     beforeDate = beforeDate,
                     createdDt = LocalDateTime.now(),
                 )
@@ -101,9 +102,8 @@ object PlayListExtractor {
             .replace("_안양감리교회", "")
     }
 
-    fun String.toUploadedDate(): LocalDate {
+    fun String.toUploadedDate(now: LocalDate): LocalDate {
         return runCatching {
-            val now = LocalDate.now()
             val time = "\\d+".toRegex().find(this)?.value?.toLong() ?: 0L
             val period = this.split(time.toString())[1]
 
@@ -114,6 +114,6 @@ object PlayListExtractor {
                 "개월 전" -> now.minusMonths(time)
                 else -> now
             }
-        }.getOrDefault(LocalDate.now())
+        }.getOrDefault(now)
     }
 }
