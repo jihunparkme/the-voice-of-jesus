@@ -102,17 +102,18 @@ object PlayListExtractor {
     }
 
     fun String.toUploadedDate(): LocalDate {
-        return LocalDate.now()
-    }
-    // N시간 전
-    // N일 전
-    // N주 전
-    // N개월 전
+        return runCatching {
+            val now = LocalDate.now()
+            val time = "\\d+".toRegex().find(this)?.value?.toLong() ?: 0L
+            val period = this.split(time.toString())[1]
 
-    /**
-     * val text = "3시간 전"
-     * val number = "\\d+".toRegex().find(text)?.value?.toInt()
-     *
-     * println(number) // 출력: 3
-     */
+            return when (period) {
+                "시간 전" -> now
+                "일 전" -> now.minusDays(time)
+                "주 전" -> now.minusWeeks(time)
+                "개월 전" -> now.minusMonths(time)
+                else -> now
+            }
+        }.getOrDefault(LocalDate.now())
+    }
 }
