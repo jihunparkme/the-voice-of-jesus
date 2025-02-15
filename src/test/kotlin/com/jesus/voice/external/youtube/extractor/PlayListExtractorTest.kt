@@ -2,6 +2,7 @@ package com.jesus.voice.external.youtube.extractor
 
 import com.jesus.voice.external.youtube.extractor.PlayListExtractor.refineTitle
 import com.jesus.voice.external.youtube.extractor.PlayListExtractor.toUploadedDate
+import io.kotest.matchers.date.before
 import io.kotest.matchers.shouldBe
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -22,10 +23,9 @@ class PlayListExtractorTest {
         val first = result.first()
         first.videoId shouldBe "T1MTC6_KdNk"
         first.thumbnailUrl shouldBe "https://i.ytimg.com/vi/T1MTC6_KdNk/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDpiIAqBASANHlIuDW2B1I6jspvlA"
-        first.title shouldBe "[안양감리교회 주일1부예배] \"하나님이 보시는 헌신\" (눅 21:1-6)_안양감리교회 김수겸 목사_2025.1.12"
+        first.title shouldBe "\"하나님이 보시는 헌신\" (눅 21:1-6) 김수겸 목사_2025.1.12"
         first.publisher shouldBe "안양감리교회"
         first.streamingTime shouldBe "34:25"
-        first.uploadedDate shouldBe "2025.1.12"
         first.beforeDate shouldBe "4일 전"
     }
 
@@ -76,9 +76,16 @@ class PlayListExtractorTest {
     }
 
     @Test
-    fun to_uploaded_date_fail() {
+    fun to_uploaded_date_return_default() {
+        val date = LocalDate.of(2024, 11, 3)
+
         var beforeDay = ""
+        beforeDay.toUploadedDate(date) shouldBe date
+
         beforeDay = "3분 전"
+        beforeDay.toUploadedDate(date) shouldBe date
+
         beforeDay = "방금"
+        beforeDay.toUploadedDate(date) shouldBe date
     }
 }
