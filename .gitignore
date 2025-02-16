@@ -43,3 +43,4 @@ out/
 ### application
 application-real.yml
 application-ai.yml
+application-management.yml
