@@ -1,6 +1,8 @@
 server:
   tomcat:
     uri-encoding: UTF-8
+    mbeanregistry:
+          enabled: true
 
 spring:
   profiles:
