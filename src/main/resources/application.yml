@@ -7,7 +7,9 @@ spring:
     active: prod
     group:
       local: local, ai
-      prod: real, ai
+      prod: real, real-port, ai, management
+      set1: real, real-set1, ai, management
+      set2: real, real-set2, ai, management
 
   data:
     mongodb:

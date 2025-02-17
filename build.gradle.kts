@@ -42,6 +42,9 @@ dependencies {
 	// ---------------------------------- Data
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
+	// ---------------------------------- monitoring
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+
 	// ---------------------------------- Util
 	implementation("io.ktor:ktor-client-core:$ktor")
 	implementation("io.ktor:ktor-client-cio:$ktor")
