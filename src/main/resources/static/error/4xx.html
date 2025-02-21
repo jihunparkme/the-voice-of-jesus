@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<div th:replace="~{common/head}"></div>
+<link th:href="@{/css/error/error.css}" rel="stylesheet"/>
+
+<body>
+<div>
+    <div class="info_error">
+        <img th:src="@{/images/icon/warning-220.png}"  alt="Error" class="error_img">
+        <strong class="tit_error">The page you requested cannot be found.</strong>
+        <p class="desc_error">
+            The address of the page you are looking for may be incorrect,
+            <br>or the page address has been changed or deleted
+            <br>and is currently unavailable.
+            <br>Please check again to ensure
+            <br>that the address of the page you entered is correct.
+        </p>
+        <div class="wrap_linkhome">
+            <a href="/" class="link_home">
+                <span class="inner_link">
+                    <span class="txt_home">Go to the first page</span>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<div th:replace="~{common/footer}"></div>
+</body>
+</html>
