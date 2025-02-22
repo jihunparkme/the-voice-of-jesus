@@ -3,29 +3,29 @@ html {
 }
 
 .info_error {
-    background: #211F20;
     padding: 170px 10px 80px;
     text-align: center;
 }
+
 .info_error img.error_img {
     display: block;
     width: 110px;
     margin: 0 auto 53px;
 }
+
 .info_error .tit_error {
-    color: #ffffff;
     display: block;
     font-size: 25px;
     font-style: normal;
     font-weight: 400;
 }
+
 .info_error .desc_error {
     padding: 19px 0 45px;
     font-size: 13px;
-    color: #818181;
     line-height: 18px;
-    color: #ffffff8a;
 }
+
 .info_error .link_home {
     display: block;
     overflow: hidden;
@@ -36,6 +36,12 @@ html {
     font-size: 16px;
     line-height: 58px;
 }
+
 a {
+    text-decoration-line: none;
+}
+
+.txt_home {
+    color: black;
     text-decoration-line: none;
 }

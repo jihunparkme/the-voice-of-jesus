@@ -4,21 +4,21 @@
 <link th:href="@{/css/error/error.css}" rel="stylesheet"/>
 
 <body>
+<div th:replace="~{common/navigator}"></div>
+
 <div>
     <div class="info_error">
-        <img th:src="@{/images/icon/warning-220.png}"  alt="Error" class="error_img">
-        <strong class="tit_error">The page you requested cannot be found.</strong>
+        <img th:src="@{/images/icon/warning-220.png}" alt="Error" class="error_img">
+        <strong class="tit_error">페이지를 찾을 수 없습니다.</strong>
         <p class="desc_error">
-            The address of the page you are looking for may be incorrect,
-            <br>or the page address has been changed or deleted
-            <br>and is currently unavailable.
-            <br>Please check again to ensure
-            <br>that the address of the page you entered is correct.
+            요청하신 페이지를 찾을 수 없습니다.
+            <br/>주소가 잘못되었거나 삭제되었을 수 있습니다.
+            <br/>다시 한 번 확인해 주세요.
         </p>
         <div class="wrap_linkhome">
-            <a href="/static" class="link_home">
+            <a href="/" class="link_home">
                 <span class="inner_link">
-                    <span class="txt_home">Go to the first page</span>
+                    <span class="txt_home">첫 페이지로 가기</span>
                 </span>
             </a>
         </div>
