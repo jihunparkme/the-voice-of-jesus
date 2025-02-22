@@ -10826,3 +10826,24 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+header .logo {
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#navbar .logo a {
+  color: #000000;
+}
+
+#navbar .logo img {
+  max-height: 40px;
+}
+
+.me-auto {
+  margin-right: 10px !important;
+}
