@@ -4,16 +4,11 @@
     margin: 60px auto;
     justify-content: center !important;
 }
-.word-cloud {
-    width: 80%;
-    height: 60%;
-    max-width: 100%;
-    max-height: 100%;
-    margin-top: 10px;
-}
+
 svg {
     display: block;
 }
+
 .red {
     color: #bb2d3b;
 }
