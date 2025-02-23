@@ -38,4 +38,9 @@ class IndexController(
 
         return "index"
     }
+
+    @GetMapping("/about")
+    fun about(): String {
+        return "about"
+    }
 }
