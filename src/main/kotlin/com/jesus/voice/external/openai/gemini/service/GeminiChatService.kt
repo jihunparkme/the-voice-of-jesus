@@ -17,8 +17,15 @@ class GeminiChatService(
         runCatching {
             geminiChatClient.chat(text).getOrThrow()
                 .candidates.first().content.parts.first().text
+                .convertMarkdown()
         }.onFailure {
             log.error(it.message, it)
             throw WordCountException("문장 요약에 실패하였습니다.")
         }.getOrDefault(text)
+}
+
+fun String.convertMarkdown(): String {
+    val regex = Regex("\\*\\*(.*?)\\*\\*")
+    return this.replace("  ", " ")
+        .replace(regex, "<strong>$1</strong>")
 }

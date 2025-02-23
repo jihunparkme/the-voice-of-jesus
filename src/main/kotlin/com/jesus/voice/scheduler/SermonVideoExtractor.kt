@@ -61,7 +61,6 @@ class SermonVideoExtractor(
         }
         val (refinedContent, wordCount) = MorphemeAnalyzer.analyze(transcript)
         val summarizedContent = geminiChatService.chat(CHAT_PREFIX + refinedContent)
-            .replace("  ", " ")
         return playListVideo.toSermon(
             playList = channel.toDocument(),
             transcript = refinedContent,
