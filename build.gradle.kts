@@ -6,6 +6,7 @@ plugins {
 	id("org.springframework.boot") version "3.4.1"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("io.sentry.jvm.gradle") version "5.2.0"
+	id ("com.google.cloud.tools.jib") version "3.2.0"
 }
 
 group = "com.jesus"
@@ -80,4 +81,17 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+jib {
+	from {
+		image = "eclipse-temurin:21.0.6_7-jre-alpine"
+	}
+	to {
+		image = "jihunparkme/the-voice-of-jesus"
+		tags = setOf("latest")
+	}
+	container {
+		jvmFlags = listOf("-Xms128m", "-Xmx128m")
+	}
 }
