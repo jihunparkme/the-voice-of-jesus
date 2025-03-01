@@ -89,7 +89,7 @@ jib {
 	}
 	to {
 		image = "jihunparkme/the-voice-of-jesus"
-		tags = setOf("latest")
+		tags = setOf("latest", "1.0.0")
 	}
 	container {
 		jvmFlags = listOf("-Xms128m", "-Xmx128m")
