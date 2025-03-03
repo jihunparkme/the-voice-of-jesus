@@ -5,7 +5,7 @@
     <link th:href="@{/css/index.css}" rel="stylesheet"/>
 
     <body>
-        <div th:replace="~{common/navigator}"></div>
+        <div th:replace="~{common/navigator :: navigator('home')}"></div>
         <div th:replace="~{common/header}"></div>
 
         <div class="container">
@@ -98,8 +98,6 @@
         <div th:replace="~{common/footer}"></div>
         <script type="text/javascript" th:src="@{/js/index.js}"></script>
         <script type="text/javascript" th:inline="javascript">
-            console.log([[${sermonListPage}]])
-            console.log([[${channels}]])
             let totalPages = [[${sermonListPage.totalPages}]];
             let startPage = [[${sermonListPage.number}]] + 1;
 
