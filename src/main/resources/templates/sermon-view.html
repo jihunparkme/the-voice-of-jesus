@@ -3,6 +3,7 @@
 <div th:replace="~{common/head}"></div>
 <link th:href="@{/css/index.css}" rel="stylesheet"/>
 <link th:href="@{/css/view.css}" rel="stylesheet"/>
+<link th:href="@{/css/common.css}" rel="stylesheet"/>
 
 <body>
 <div th:replace="~{common/navigator}"></div>
@@ -26,11 +27,10 @@
 
                     <div class="entry-content">
                         <h5 class="font-white" style="font-weight: bold;"><i class="bi bi-info-circle"></i> 말씀 정보</h5>
-                        <div>
+                        <div class="blockquote ml">
                             <span>• 채널명: [(${sermon.publisher})]</span><br/>
                             <span>• 업로드 일자: [(${sermon.uploadedDate})]</span><br/>
                             <span>• 재생목록: [(${sermon.playList.title})]</span><br/>
-                            <br/>
                         </div>
                     </div>
 
@@ -54,7 +54,9 @@
                         <h3 class="font-white" style="margin-top: 50px;">
                             <i class="bi bi-journal-bookmark"></i> 말씀 요약
                         </h3>
-                        <div class="text-container" th:text="${sermon.summary.isEmpty() ? '자막이 제공되지 않는 영상입니다.' : sermon.summary}"></div>
+                        <div class="blockquote">
+                            <div class="text-container" th:text="${sermon.summary.isEmpty() ? '자막이 제공되지 않는 영상입니다.' : sermon.summary}"></div>
+                        </div>
                     </div>
 
                     <div class="entry-content" style="margin-top: 50px">
