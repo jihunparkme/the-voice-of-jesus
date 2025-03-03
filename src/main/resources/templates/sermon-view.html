@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <div th:replace="~{common/head}"></div>
-<link th:href="@{/css/index.css}" rel="stylesheet"/>
-<link th:href="@{/css/view.css}" rel="stylesheet"/>
 <link th:href="@{/css/common.css}" rel="stylesheet"/>
+<link th:href="@{/css/view.css}" rel="stylesheet"/>
 
 <body>
 <div th:replace="~{common/navigator}"></div>
@@ -54,13 +53,24 @@
                         <h3 class="font-white" style="margin-top: 50px;">
                             <i class="bi bi-journal-bookmark"></i> 말씀 요약
                         </h3>
+                        <div th:if="${not #strings.isEmpty(sermon.transcript)}">
+                            <div class="info">* LLM을 활용하여 요약된 결과입니다.</div>
+                        </div>
                         <div class="blockquote">
-                            <div class="text-container" th:text="${sermon.summary.isEmpty() ? '자막이 제공되지 않는 영상입니다.' : sermon.summary}"></div>
+                            <div th:if="${not #strings.isEmpty(sermon.transcript)}">
+                                <div class="text-container">[(${sermon.summary})]</div>
+                            </div>
+                            <div th:if="${#strings.isEmpty(sermon.transcript)}">
+                                <div>자막이 제공되지 않는 영상입니다.</div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="entry-content" style="margin-top: 50px">
                         <h3 class="font-white"><i class="bi bi-journal-text"></i> 말씀 자막</h3>
+                        <div th:if="${not #strings.isEmpty(sermon.transcript)}">
+                            <div class="info">* 이 자막은 유튜브 스크립트에서 추출되었습니다.</div>
+                        </div>
 
                         <div class="accordion" th:if="${not #strings.isEmpty(sermon.transcript)}">
                             <div class="accordion-item">
@@ -77,7 +87,9 @@
                             </div>
                         </div>
 
-                        <div class="text-container" th:if="${sermon.transcript.isEmpty()}">자막이 제공되지 않는 영상입니다.</div>
+                        <div class="blockquote">
+                            <div class="text-container" th:if="${sermon.transcript.isEmpty()}">자막이 제공되지 않는 영상입니다.</div>
+                        </div>
                     </div>
 
                     <div class="entry-content" th:if="${sermon.wordCount.size() > 0}" style="margin-top: 50px">
