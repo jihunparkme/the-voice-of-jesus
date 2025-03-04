@@ -24,6 +24,9 @@ class SermonVideoExtractor(
     @Value("\${app.random.start}") var randomStart: Long,
     @Value("\${app.random.end}") var randomEnd: Long,
 ) {
+    /**
+     * @see https://docs.spring.io/spring-framework/reference/integration/scheduling.html#scheduling-cron-expression
+     */
     @Scheduled(cron = "0 0 1 * * 3", zone = "Asia/Seoul")
     fun runScheduler() = listOf(
         AYMCPlayList.SUNDAY_1,
