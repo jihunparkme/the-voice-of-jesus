@@ -1,4 +1,5 @@
 server:
+  port: 8080
   tomcat:
     uri-encoding: UTF-8
     mbeanregistry:
@@ -8,9 +9,9 @@ spring:
   profiles:
     group:
       local: local, ai
-      beta: real, beta-port, ai, management
-      prod1: real, prod1-port, ai, management
-      prod2: real, prod2-port, ai, management
+      beta: real, ai, management
+      prod1: real, ai, management
+      prod2: real, ai, management
 
   data:
     mongodb:
