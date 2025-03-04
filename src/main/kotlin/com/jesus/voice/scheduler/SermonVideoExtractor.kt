@@ -24,7 +24,7 @@ class SermonVideoExtractor(
     @Value("\${app.random.start}") var randomStart: Long,
     @Value("\${app.random.end}") var randomEnd: Long,
 ) {
-    @Scheduled(cron = "0 0 20 * * ?")
+    @Scheduled(cron = "0 0 1 * * 3", zone = "Asia/Seoul")
     fun runScheduler() = listOf(
         AYMCPlayList.SUNDAY_1,
         AYMCPlayList.DADRIM,
