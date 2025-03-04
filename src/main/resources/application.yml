@@ -9,7 +9,7 @@ spring:
     active: prod
     group:
       local: local, ai
-      beta: real, real-port, ai, management
+      beta: real, beta-port, ai, management
       prod1: real, real-prod1, ai, management
       prod2: real, real-prod2, ai, management
 

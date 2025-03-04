@@ -44,6 +44,6 @@ out/
 application-real.yml
 application-ai.yml
 application-management.yml
-application-real-port.yml
+application-beta-port.yml
 application-prod1-port.yml
 application-prod2-port.yml
