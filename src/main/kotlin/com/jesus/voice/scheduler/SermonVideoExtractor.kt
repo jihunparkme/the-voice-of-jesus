@@ -27,7 +27,7 @@ class SermonVideoExtractor(
     /**
      * @see https://docs.spring.io/spring-framework/reference/integration/scheduling.html#scheduling-cron-expression
      */
-    @Scheduled(cron = "0 0 1 * * 3", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 0 1 * * 3")
     fun runScheduler() = listOf(
         AYMCPlayList.SUNDAY_1,
         AYMCPlayList.DADRIM,
