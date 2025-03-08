@@ -21,8 +21,8 @@ class SermonVideoExtractor(
     private val youtubeService: YoutubeService,
     private val sermonRepository: SermonRepository,
     private val geminiChatService: GeminiChatService,
-    @Value("\${app.random.start}") var randomStart: Long,
-    @Value("\${app.random.end}") var randomEnd: Long,
+    @Value("\${app.random.start}") val randomStart: Long,
+    @Value("\${app.random.end}") val randomEnd: Long,
 ) {
     /**
      * @see https://docs.spring.io/spring-framework/reference/integration/scheduling.html#scheduling-cron-expression
