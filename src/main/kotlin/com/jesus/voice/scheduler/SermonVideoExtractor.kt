@@ -3,6 +3,7 @@ package com.jesus.voice.scheduler
 import com.jesus.voice.aggregate.sermon.domain.Sermon
 import com.jesus.voice.aggregate.sermon.domain.SermonRepository
 import com.jesus.voice.common.dtos.AYMCPlayList
+import com.jesus.voice.common.dtos.PlayListChannel
 import com.jesus.voice.common.util.logger
 import com.jesus.voice.external.komoran.MorphemeAnalyzer
 import com.jesus.voice.external.openai.gemini.service.GeminiChatService
@@ -41,7 +42,7 @@ class SermonVideoExtractor(
         }
     }
 
-    private fun saveSermonVideo(channel: AYMCPlayList) =
+    private fun saveSermonVideo(channel: PlayListChannel) =
         youtubeService.getVideoIdFromPlayList(channel.id)
             .take(1)
             .filterNot { sermonRepository.existsByVideoId(it.videoId) }
@@ -51,7 +52,7 @@ class SermonVideoExtractor(
                 log.info("✅✅✅ Sermon saved: $sermon")
             }
 
-    private fun generateSermon(playListVideo: PlayListVideo, channel: AYMCPlayList): Sermon {
+    private fun generateSermon(playListVideo: PlayListVideo, channel: PlayListChannel): Sermon {
         val transcript = runCatching {
             youtubeService.getTranscript(VideoId(playListVideo.videoId))
         }.getOrDefault("")

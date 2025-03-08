@@ -24,6 +24,8 @@ enum class ChannelType(
 interface PlayListChannel {
     val title: String
     val id: String
+
+    fun toDocument(): PlayList
 }
 
 fun getPlayList(channel: String): List<Pair<String, String>> {
@@ -44,7 +46,7 @@ enum class AYMCPlayList(
     // FRIDAY_RECOVERY("금요회복기도회", "PLVK2VzE62knwvJiCH0yExJnUUibDQ1-D5"), // 스크립트 미제공
     ;
 
-    fun toDocument() = PlayList(this.title, this.id)
+    override fun toDocument() = PlayList(this.title, this.id)
 
     companion object {
         fun from(value: String): String {
