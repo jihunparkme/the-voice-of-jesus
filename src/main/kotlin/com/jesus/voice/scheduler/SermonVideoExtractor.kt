@@ -31,8 +31,6 @@ class SermonVideoExtractor(
     fun runScheduler() = listOf(
         AYMCPlayList.SUNDAY_1,
         AYMCPlayList.DADRIM,
-        AYMCPlayList.DAWN,
-        AYMCPlayList.FRIDAY_RECOVERY,
         AYMCPlayList.SUNDAY,
     ).forEach { channel ->
         runBlocking {

@@ -39,9 +39,9 @@ enum class AYMCPlayList(
 ) : PlayListChannel {
     SUNDAY_1("주일1부예배", "PLVK2VzE62knzVtluDggBd7UiwTiWS2DW9"),
     DADRIM("다드림예배", "PLVK2VzE62knxZpbQVCg_4VtY-FA5X80Jl"),
-    DAWN("새벽기도회", "PLVK2VzE62knwgDZIzr-bxi_S6URleOU8C"),
-    FRIDAY_RECOVERY("금요회복기도회", "PLVK2VzE62knwvJiCH0yExJnUUibDQ1-D5"),
     SUNDAY("안양감리교회 주일예배", "PLVK2VzE62knzUrtNYtjiuSI6UJO2fhFKA"),
+    // DAWN("새벽기도회", "PLVK2VzE62knwgDZIzr-bxi_S6URleOU8C"), // 스크립트 미제공
+    // FRIDAY_RECOVERY("금요회복기도회", "PLVK2VzE62knwvJiCH0yExJnUUibDQ1-D5"), // 스크립트 미제공
     ;
 
     fun toDocument() = PlayList(this.title, this.id)
