@@ -5,12 +5,12 @@ import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 
 class BasicResponse<T>(
-    private val status: Int = 0,
-    private val httpStatusCode: HttpStatusCode,
-    private val success: Boolean = false,
-    private val message: String = "",
-    private val count: Int = 0,
-    private val data: T? = null,
+    val status: Int = 0,
+    val httpStatusCode: HttpStatusCode,
+    val success: Boolean = false,
+    val message: String = "",
+    val count: Int = 0,
+    val data: T? = null,
 ) {
 
     companion object {
@@ -24,7 +24,7 @@ class BasicResponse<T>(
             return ResponseEntity(basicResponse, HttpStatus.INTERNAL_SERVER_ERROR)
         }
 
-        fun clientError(message: String): ResponseEntity<Any> {
+        fun clientError(message: String): ResponseEntity<BasicResponse<Any>> {
             val basicResponse = BasicResponse<Any>(
                 status = HttpStatus.BAD_REQUEST.value(),
                 httpStatusCode = HttpStatus.BAD_REQUEST,
@@ -34,7 +34,7 @@ class BasicResponse<T>(
             return ResponseEntity(basicResponse, HttpStatus.BAD_REQUEST)
         }
 
-        fun notFound(message: String): ResponseEntity<Any> {
+        fun notFound(message: String): ResponseEntity<BasicResponse<Any>> {
             val basicResponse = BasicResponse<Any>(
                 status = HttpStatus.NOT_FOUND.value(),
                 httpStatusCode = HttpStatus.NOT_FOUND,
@@ -98,4 +98,9 @@ class BasicResponse<T>(
             return ResponseEntity(basicResponse, HttpStatus.CREATED)
         }
     }
+}
+
+enum class Result(title: String) {
+    FAIL("FAIL"),
+    SUCCESS("SUCCESS")
 }
