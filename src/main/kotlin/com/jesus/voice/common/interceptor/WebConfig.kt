@@ -17,7 +17,7 @@ class WebConfig(
 
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
         registry.addResourceHandler("/favicon.ico")
-            .addResourceLocations("classpath:/static/favicon.ico/")
+            .addResourceLocations("classpath:/static/favicon/")
             .resourceChain(false)
             .addResolver(PathResourceResolver())
     }
