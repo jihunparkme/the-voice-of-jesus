@@ -3,6 +3,7 @@ package com.jesus.voice.common.handler
 import com.jesus.voice.common.dtos.BasicResponse
 import com.jesus.voice.common.exception.ApiException
 import com.jesus.voice.common.exception.GeminiChatException
+import com.jesus.voice.common.exception.NotFoundPlayListChannel
 import com.jesus.voice.common.exception.TranscriptDisabledException
 import com.jesus.voice.common.exception.WordCountClientException
 import com.jesus.voice.common.exception.WordCountException
@@ -32,6 +33,7 @@ class RestControllerExceptionHandler {
         YoutubePlayListExtractException::class,
         WordCountClientException::class,
         ApiException::class,
+        NotFoundPlayListChannel::class,
     )
     fun handleCustomNotFoundException(ex: Exception): ResponseEntity<BasicResponse<Any>> {
         return BasicResponse.notFound(ex.message ?: "처리가 불가능한 요청입니다.")

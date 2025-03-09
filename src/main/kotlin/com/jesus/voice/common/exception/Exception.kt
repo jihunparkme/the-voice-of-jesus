@@ -52,3 +52,7 @@ class ApiException(
     val errorResponse: ErrorResponse,
     val code: Int,
 ) : RuntimeException()
+
+class NotFoundPlayListChannel(
+    override var message: String = "등록되지 않은 플레이리스트입니다."
+) : RuntimeException(message)
