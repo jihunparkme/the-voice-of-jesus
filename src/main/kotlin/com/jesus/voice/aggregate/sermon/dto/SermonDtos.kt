@@ -42,3 +42,9 @@ data class SermonViewResponse(
         val EMPTY = SermonViewResponse()
     }
 }
+
+data class ExtractVideoRequest(
+    val playListChannel: String,
+    val playListChannelId: String,
+    val count: Int = 1,
+)
