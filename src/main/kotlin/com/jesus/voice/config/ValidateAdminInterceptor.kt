@@ -1,4 +1,4 @@
-package com.jesus.voice.common.interceptor
+package com.jesus.voice.config
 
 import com.jesus.voice.common.annotation.ValidateAdmin
 import jakarta.servlet.http.HttpServletRequest

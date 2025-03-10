@@ -1,4 +1,4 @@
-package com.jesus.voice.common.interceptor
+package com.jesus.voice.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
