@@ -1,7 +1,7 @@
 package com.jesus.voice.external.youtube.client
 
 import com.jesus.voice.config.KtorClient
-import com.jesus.voice.config.ResponseResult
+import com.jesus.voice.common.dtos.ResponseResult
 import com.jesus.voice.config.responseResult
 import com.jesus.voice.external.youtube.dto.Const.YOUTUBE_PLAYLIST_URL
 import com.jesus.voice.external.youtube.dto.Const.YOUTUBE_WATCH_URL

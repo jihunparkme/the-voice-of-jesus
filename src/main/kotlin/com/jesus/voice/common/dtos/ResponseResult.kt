@@ -1,4 +1,4 @@
-package com.jesus.voice.config
+package com.jesus.voice.common.dtos
 
 import com.jesus.voice.common.exception.ApiException
 import org.springframework.http.HttpStatus

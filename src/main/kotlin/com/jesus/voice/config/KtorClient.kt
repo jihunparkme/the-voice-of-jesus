@@ -1,5 +1,7 @@
 package com.jesus.voice.config
 
+import com.jesus.voice.common.dtos.ErrorResponse
+import com.jesus.voice.common.dtos.ResponseResult
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO

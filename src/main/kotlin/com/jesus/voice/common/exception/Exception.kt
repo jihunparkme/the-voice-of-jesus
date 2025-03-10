@@ -1,6 +1,6 @@
 package com.jesus.voice.common.exception
 
-import com.jesus.voice.config.ErrorResponse
+import com.jesus.voice.common.dtos.ErrorResponse
 import com.jesus.voice.external.youtube.dto.Const.YOUTUBE_WATCH_URL
 
 class TranscriptDisabledException(
