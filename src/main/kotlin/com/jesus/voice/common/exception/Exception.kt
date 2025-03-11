@@ -56,3 +56,7 @@ class ApiException(
 class NotFoundPlayListChannel(
     override var message: String = "등록되지 않은 플레이리스트입니다."
 ) : RuntimeException(message)
+
+class NotFoundVideo(
+    override var message: String = "영상을 찾을 수 없습니다."
+) : RuntimeException(message)

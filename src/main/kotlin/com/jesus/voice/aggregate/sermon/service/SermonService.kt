@@ -7,6 +7,7 @@ import com.jesus.voice.aggregate.sermon.dto.SermonRequest
 import com.jesus.voice.aggregate.sermon.dto.SermonViewResponse
 import com.jesus.voice.common.dtos.AYMCPlayList
 import com.jesus.voice.common.dtos.ChannelType
+import com.jesus.voice.common.exception.NotFoundVideo
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
@@ -33,6 +34,6 @@ class SermonService(
     @Transactional(readOnly = true)
     fun findSermonView(id: String): SermonViewResponse {
         val sermon = sermonRepository.findById(id).getOrNull()
-        return sermon?.toViewResponse() ?: SermonViewResponse.EMPTY
+        return sermon?.toViewResponse() ?: throw NotFoundVideo()
     }
 }
