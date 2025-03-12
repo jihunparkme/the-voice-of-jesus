@@ -22,7 +22,7 @@ class SermonExtractService(
         youtubeService.getVideoIdFromPlayList(channelId)
             .take(count)
             .filterNot { sermonRepository.existsByVideoId(it.videoId) }
-            .map { generateSermon(it, channel) } // TODO: 채널 검색 -> Extractor 를 서비스 호출로 수정
+            .map { generateSermon(it, channel) }
             .forEach { sermon ->
                 sermonRepository.save(sermon)
                 log.info("✅✅✅ Sermon saved: $sermon")
