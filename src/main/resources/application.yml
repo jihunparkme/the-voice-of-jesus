@@ -9,7 +9,7 @@ spring:
   profiles:
     group:
       local: local, ai
-      beta: real, ai, management
+      beta: beta, ai, management
       prod1: real, ai, management
       prod2: real, ai, management
 
