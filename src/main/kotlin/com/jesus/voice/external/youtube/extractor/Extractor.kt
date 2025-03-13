@@ -9,7 +9,6 @@ import com.jesus.voice.external.youtube.dto.PlayListVideo
 import com.jesus.voice.external.youtube.dto.Transcript
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
-import org.springframework.cglib.core.Local
 import java.time.LocalDate
 import java.time.LocalDateTime
 
