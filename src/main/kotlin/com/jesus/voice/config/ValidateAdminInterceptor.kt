@@ -1,6 +1,7 @@
 package com.jesus.voice.config
 
 import com.jesus.voice.common.annotation.ValidateAdmin
+import com.jesus.voice.common.util.logger
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Value
@@ -17,6 +18,7 @@ class ValidateAdminInterceptor(
             handler.getMethodAnnotation(ValidateAdmin::class.java)?.let { validateAdmin ->
                 if (request.getHeader(ADMIN_TOKEN_HEADER) != appAdminToken) {
                     response.status = HttpServletResponse.SC_UNAUTHORIZED
+                    log.info("\uD83D\uDEA8 admin token is available")
                     return false
                 }
             }
@@ -26,5 +28,6 @@ class ValidateAdminInterceptor(
 
     companion object {
         private const val ADMIN_TOKEN_HEADER = "X-Admin-Token"
+        private val log by logger()
     }
 }
