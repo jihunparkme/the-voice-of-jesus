@@ -60,3 +60,5 @@ enum class AYMCPlayList(
             entries.map { Pair(it.name, it.title) }
     }
 }
+
+val ALL_PLAYLIST = AYMCPlayList.entries

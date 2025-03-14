@@ -9,6 +9,7 @@ import com.jesus.voice.common.dtos.ChannelType
 import com.jesus.voice.common.dtos.Result
 import com.jesus.voice.common.exception.NotFoundPlayListChannel
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -31,4 +32,10 @@ class AdminController(
         sermonExtractService.extractSermon(playListChannel, request.playListChannelId, request.count)
         return BasicResponse.ok(Result.SUCCESS)
     }
+
+    @ValidateAdmin
+    @PostMapping("/extract/schedule/{count}")
+    fun extractSchedule(
+        @PathVariable(name = "count") count: Int,
+    ) = sermonExtractService.extractSermonSchedule(count)
 }
