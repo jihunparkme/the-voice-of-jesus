@@ -31,7 +31,8 @@ class SecurityConfig(
                         AntPathRequestMatcher("/error"),
 
                         AntPathRequestMatcher("$managementPath/**"),
-                        AntPathRequestMatcher("/sermon/**")
+                        AntPathRequestMatcher("/sermon/**"),
+                        AntPathRequestMatcher("/about/**")
                     ).permitAll()
             }
         return http.build()
