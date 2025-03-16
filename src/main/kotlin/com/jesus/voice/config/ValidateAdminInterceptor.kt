@@ -11,7 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor
 
 @Component
 class ValidateAdminInterceptor(
-    @Value("\${app.admin-token}") var appAdminToken: String,
+    @Value("\${app.service-key}") var appAdminToken: String,
 ) : HandlerInterceptor {
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
         if (handler is HandlerMethod) {
@@ -27,7 +27,7 @@ class ValidateAdminInterceptor(
     }
 
     companion object {
-        private const val ADMIN_TOKEN_HEADER = "X-Admin-Token"
+        private const val ADMIN_TOKEN_HEADER = "X-Service-Key"
         private val log by logger()
     }
 }

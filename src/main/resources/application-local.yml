@@ -27,7 +27,7 @@ app:
   random:
     start: 10000
     end: 20000
-  admin-token: 82fddee8-411d-3fd8-9fa4-bfd68db64bf2
+  service-key: 82fddee8-411d-3fd8-9fa4-bfd68db64bf2
 
 logging:
   level:
