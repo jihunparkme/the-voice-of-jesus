@@ -1,6 +1,7 @@
 .notice {
     min-height: 100%;
     position: relative;
+    margin-top: 1.5em;
 }
 
 .notice .entry {
