@@ -31,6 +31,7 @@ app:
 
 logging:
   level:
+    root: DEBUG
     org:
       springframework:
         data:
