@@ -52,16 +52,26 @@
                         <h3 class="font-white" style="margin-top: 50px;">
                             <i class="bi bi-journal-bookmark"></i> 말씀 요약
                         </h3>
-                        <div th:if="${not #strings.isEmpty(sermon.transcript)}">
+                        <div th:if="${not #strings.isEmpty(sermon.summary)}">
                             <div class="info">* LLM을 활용하여 요약된 결과입니다.</div>
                         </div>
+                        <div class="accordion" th:if="${not #strings.isEmpty(sermon.summary)}">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" id="summary-btn" type="button" data-bs-toggle="collapse" data-bs-target="#summary" aria-expanded="true" aria-controls="collapseOne">
+                                        전체 요약 펼치기
+                                    </button>
+                                </h2>
+                                <div id="summary" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="text-container">[(${sermon.summary})]</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="blockquote">
-                            <div th:if="${not #strings.isEmpty(sermon.transcript)}">
-                                <div class="text-container">[(${sermon.summary})]</div>
-                            </div>
-                            <div th:if="${#strings.isEmpty(sermon.transcript)}">
-                                <div>자막이 제공되지 않는 영상입니다.</div>
-                            </div>
+                            <div class="text-container" th:if="${sermon.summary.isEmpty()}">요약이 제공되지 않는 영상입니다.</div>
                         </div>
                     </div>
 
