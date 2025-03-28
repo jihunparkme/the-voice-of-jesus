@@ -34,12 +34,17 @@
 │   └──springmockk
 ```
 
+## System architecture
+
+![Result](./src/main/resources/static/images/system-architecture.png 'Result')
+
 ## Key Features
 
-- 유튜브 재생목록에서 동영상 리스트 추출
-- 동영상 자막 추출
+- 유튜브 재생목록에서 영상 리스트 추출
+- 영상 자막 추출
 - 자막 전처리
-- 자막 형태소 분석(word cloud 생성) / [komoran](https://docs.komoran.kr/)
+- 자막 형태소 분석으로 주요 키워드 추출 / [komoran](https://docs.komoran.kr/)
+  - word cloud 생성
 - 자막 요약 / [gemini](https://gemini.google.com/app)
 
 ## Sample
