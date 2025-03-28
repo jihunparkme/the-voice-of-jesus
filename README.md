@@ -49,11 +49,13 @@
 
 ## Sample
 
-### List
+### Sermon List
 
 ![Image](https://github.com/user-attachments/assets/71fc8e9f-e6b0-4c90-bb3e-3087ab85b5d4)
 
-### View
+### Sermon View
+
+![Image](https://github.com/user-attachments/assets/35281f56-d020-4e6e-82e4-97d6a6fa610c)
 
 
 
