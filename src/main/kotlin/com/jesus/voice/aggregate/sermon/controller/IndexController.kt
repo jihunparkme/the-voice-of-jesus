@@ -2,6 +2,7 @@ package com.jesus.voice.aggregate.sermon.controller
 
 import com.jesus.voice.aggregate.sermon.dto.SermonRequest
 import com.jesus.voice.aggregate.sermon.service.SermonService
+import com.jesus.voice.common.dtos.ALL_PLAYLIST
 import com.jesus.voice.common.dtos.ChannelType
 import com.jesus.voice.common.dtos.getPlayList
 import org.springframework.data.domain.PageRequest
@@ -30,6 +31,10 @@ class IndexController(
         model.apply {
             addAttribute("sermonListPage", sermonListPage)
             addAttribute("playLists", getPlayList(param.channel))
+
+            val curChannel = ChannelType.from(param.channel).title
+            addAttribute("curChannel", if(curChannel.isEmpty()) "전체" else curChannel)
+            addAttribute("curPlayList", ALL_PLAYLIST.find { play -> play.name == param.playList }?.title ?: "전체")
 
             addAttribute("page", param.page)
             addAttribute("channels", ChannelType.channelList())

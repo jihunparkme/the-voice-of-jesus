@@ -20,3 +20,9 @@
     color: #bb2d3b;
     margin-bottom: 10px;
 }
+
+hr {
+    background:black;
+    height:1px;
+    border:0;
+}

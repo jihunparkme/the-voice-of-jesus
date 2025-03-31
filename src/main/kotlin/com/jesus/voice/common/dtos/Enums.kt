@@ -29,6 +29,7 @@ interface PlayListChannel {
     fun toDocument(): PlayList = PlayList(this.title, this.id)
 }
 
+// TODO: new play_list
 fun getPlayList(channel: String): List<Pair<String, String>> {
     return when (ChannelType.from(channel)) {
         AYMC -> AYMCPlayList.titleList()
@@ -61,4 +62,5 @@ enum class AYMCPlayList(
     }
 }
 
+// TODO: new play_list
 val ALL_PLAYLIST = AYMCPlayList.entries
