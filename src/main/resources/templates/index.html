@@ -11,14 +11,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="entry-content">
-                        <h5 class="font-white" style="font-weight: bold;"><i class="bi bi-funnel"></i> 검색 필터</h5>
-                        <div class="blockquote ml">
-                            <span><strong>Channel</strong> : [(${curChannel})]</span><br/>
-                            <span><strong>PlayList</strong> : [(${curPlayList})]</span>
-                        </div>
+                    <div class="filter-container">
+                        <div class="filter-title">적용된 검색 필터</div>
+                        <ul class="filter-list">
+                            <li th:if="${not #strings.isEmpty(param.search)}" class="filter-item">
+                                <span>검색어: <strong th:text="${param.search}"></strong></span>
+                            </li>
+                            <li th:if="${not #strings.isEmpty(curChannel)}" class="filter-item">
+                                <span>채널: <strong>[(${curChannel})]</strong></span>
+                            </li>
+                            <li th:if="${not #strings.isEmpty(curPlayList)}" class="filter-item">
+                                <span>플레이리스트: <strong>[(${curPlayList})]</strong></span>
+                            </li>
+                        </ul>
+                        <div class="mobile-button info">* 모바일은 하단에서 검색하실 수 있습니다.</div>
+                        <button class="mobile-button btn btn-info" style="font-size: 0.8em;" onclick="location.href='#form'">이동하기</button>
                     </div>
-                    <hr/>
                     <div class="row">
                         <div class="container">
                             <div class="row post-container">
