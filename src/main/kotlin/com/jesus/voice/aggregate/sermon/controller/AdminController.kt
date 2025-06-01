@@ -38,4 +38,6 @@ class AdminController(
     fun extractSchedule(
         @PathVariable(name = "count") count: Int,
     ) = sermonExtractService.extractSermonSchedule(count)
+
+    // TODO: 자막 요약 제공 페이지
 }
