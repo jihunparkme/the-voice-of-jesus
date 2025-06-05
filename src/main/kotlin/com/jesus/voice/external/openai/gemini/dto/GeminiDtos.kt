@@ -31,32 +31,32 @@ data class Text(
 
 @Serializable
 data class GeminiChatResponse(
-    val candidates: List<Candidate>,
-    val usageMetadata: UsageMetadata,
-    val modelVersion: String
+    val candidates: List<Candidate> = emptyList(),
+    val usageMetadata: UsageMetadata? = null,
+    val modelVersion: String = ""
 )
 
 @Serializable
 data class Candidate(
     val content: Content,
-    val finishReason: String,
-    val avgLogprobs: Double
+    val finishReason: String = "",
+    val avgLogprobs: Double = 0.0
 )
 
 @Serializable
 data class Content(
-    val parts: List<ResponsePart>,
-    val role: String
+    val parts: List<ResponsePart> = emptyList(),
+    val role: String = ""
 )
 
 @Serializable
 data class ResponsePart(
-    val text: String
+    val text: String = ""
 )
 
 @Serializable
 data class UsageMetadata(
-    val promptTokenCount: Int,
-    val candidatesTokenCount: Int,
-    val totalTokenCount: Int
+    val promptTokenCount: Int = 0,
+    val candidatesTokenCount: Int = 0,
+    val totalTokenCount: Int = 0
 )
