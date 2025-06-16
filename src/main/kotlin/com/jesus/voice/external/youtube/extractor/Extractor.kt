@@ -28,6 +28,27 @@ object TranscriptUrlExtractor {
             ?: transcriptList.first().baseUrl
     }
 
+    fun extractTranscriptParam(videoId: String, videoPageHtml: String): String {
+        val scriptElement = Jsoup.parse(videoPageHtml).select("script").find {
+            it.data().contains("var ytInitialData =")
+        } ?: return ""
+
+        val scriptContent = scriptElement.data()
+        val jsonString =
+            scriptContent.substringAfter("var ytInitialData =").substringBeforeLast(";</script>") // 실제 패턴에 맞게 조정 필요
+                .trim()
+                .removeSuffix(";")
+
+        return try {
+            val params =
+                objectMapper.readTree(jsonString.split("getTranscriptEndpoint\":")[1]).path("params").asText()
+            return params
+        } catch (e: Exception) {
+            println("Error extracting desired text: ${videoId}, ${e.message}")
+            ""
+        }
+    }
+
     private fun getVideoDetails(videoId: String, html: String): String =
         html.split("\"captions\":")
             .getOrNull(1)
