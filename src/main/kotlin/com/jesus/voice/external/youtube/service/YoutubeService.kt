@@ -7,6 +7,7 @@ import com.jesus.voice.external.youtube.dto.VideoId
 import com.jesus.voice.external.youtube.extractor.PlayListExtractor
 import com.jesus.voice.external.youtube.extractor.TranscriptExtractor
 import com.jesus.voice.external.youtube.extractor.TranscriptUrlExtractor.extractTranscriptUrl
+import com.jesus.voice.external.youtube.extractor.TranscriptUrlExtractor.extractTranscriptParam
 import org.springframework.stereotype.Service
 
 @Service
@@ -18,8 +19,19 @@ class YoutubeService(
         runCatching {
             val videoPage = youtubeClient.getVideoPage(videoId.id).getOrThrow()
             val transcriptUrl = extractTranscriptUrl(videoId.id, videoPage)
-            val transcriptXml = youtubeClient.getTranscript(videoId.id, transcriptUrl).getOrThrow()
+            val transcriptXml = youtubeClient.getTranscript(transcriptUrl).getOrThrow()
             TranscriptExtractor.extractTranscript(transcriptXml)
+        }.onFailure {
+            throw YoutubeServiceException("동영상 자막 추출에 실패하였습니다. videoId: $videoId", it)
+        }.getOrDefault("")
+
+    @Throws(YoutubeServiceException::class)
+    fun getTranscriptV2(videoId: VideoId): String =
+        runCatching {
+            val videoPage = youtubeClient.getVideoPage(videoId.id).getOrThrow()
+            val transcriptParam = extractTranscriptParam(videoId.id, videoPage)
+            val transcriptJson = youtubeClient.getTranscriptV2(transcriptParam).getOrThrow()
+            // TranscriptExtractor.extractTranscript(transcriptJson)
         }.onFailure {
             throw YoutubeServiceException("동영상 자막 추출에 실패하였습니다. videoId: $videoId", it)
         }.getOrDefault("")
