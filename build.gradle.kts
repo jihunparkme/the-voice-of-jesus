@@ -86,7 +86,7 @@ tasks.withType<Test> {
 
 jib {
 	from {
-		image = "eclipse-temurin:21.0.6_7-jre-alpine"
+		image = "eclipse-temurin:21.0.6_7-jre-alpine@sha256:4e9ab608d97796571b1d5bbcd1c9f430a89a5f03fe5aa6c093888ceb6756c502"
 	}
 	to {
 		image = "jihunparkme/the-voice-of-jesus"
