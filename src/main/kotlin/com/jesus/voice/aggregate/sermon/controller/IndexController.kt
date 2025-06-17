@@ -24,7 +24,7 @@ class IndexController(
         model: Model,
     ): String {
         val pageable = PageRequest.of(
-            param.page, param.size, Sort.by("createdDt").descending(),
+            param.page, param.size, Sort.by("uploadedDate").descending(),
         )
         val sermonListPage = sermonService.findSermonList(param, pageable)
 
