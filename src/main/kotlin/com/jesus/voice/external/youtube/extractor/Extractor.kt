@@ -3,6 +3,7 @@ package com.jesus.voice.external.youtube.extractor
 import com.fasterxml.jackson.databind.JsonNode
 import com.jesus.voice.common.exception.TranscriptDisabledException
 import com.jesus.voice.common.exception.YoutubePlayListExtractException
+import com.jesus.voice.external.youtube.client.TranscriptResponse
 import com.jesus.voice.external.youtube.dto.Const.YOUTUBE_WATCH_URL
 import com.jesus.voice.external.youtube.dto.Const.objectMapper
 import com.jesus.voice.external.youtube.dto.PlayListVideo
@@ -71,6 +72,25 @@ object TranscriptExtractor {
         Jsoup.parse(transcript, "", Parser.xmlParser())
             .select("text")
             .joinToString("\n") { it.text() }
+
+    fun extractJsonTranscript(transcriptJson: TranscriptResponse): String {
+        return transcriptJson.actions
+            ?.asSequence()
+            ?.mapNotNull { it.updateEngagementPanelAction }
+            ?.mapNotNull { it.content }
+            ?.mapNotNull { it.transcriptRenderer }
+            ?.mapNotNull { it.content }
+            ?.mapNotNull { it.transcriptSearchPanelRenderer }
+            ?.mapNotNull { it.body }
+            ?.mapNotNull { it.transcriptSegmentListRenderer }
+            ?.flatMap { it.initialSegments.orEmpty() }
+            ?.mapNotNull { it.transcriptSegmentRenderer }
+            ?.mapNotNull { it.snippet }
+            ?.flatMap { it.runs.orEmpty() }
+            ?.mapNotNull { it.text }
+            ?.joinToString("\n")
+            ?: ""
+    }
 }
 
 object PlayListExtractor {

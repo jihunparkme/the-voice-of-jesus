@@ -39,6 +39,7 @@ class YoutubeClient(
         }
 }
 
+/** TranscriptRequestBody */
 @Serializable
 data class TranscriptRequestBody(
     val context: RequestContext = RequestContext(),
@@ -56,41 +57,10 @@ data class ClientInfo(
     val clientVersion: String = "2.20250610.00.00"
 )
 
+/** TranscriptResponse */
 @Serializable
 data class TranscriptResponse(
-    val responseContext: ResponseContextData? = null,
     val actions: List<Action>? = null
-)
-
-@Serializable
-data class ResponseContextData(
-    val visitorData: String? = null,
-    val serviceTrackingParams: List<ServiceTrackingParam>? = null,
-    val mainAppWebResponseContext: MainAppWebResponseContext? = null,
-    val webResponseContextExtensionData: WebResponseContextExtensionData? = null
-)
-
-@Serializable
-data class ServiceTrackingParam(
-    val service: String? = null,
-    val params: List<Param>? = null
-)
-
-@Serializable
-data class Param(
-    val key: String? = null,
-    val value: String? = null
-)
-
-@Serializable
-data class MainAppWebResponseContext(
-    val loggedOut: Boolean? = null,
-    val trackingParam: String? = null
-)
-
-@Serializable
-data class WebResponseContextExtensionData(
-    val hasDecorated: Boolean? = null
 )
 
 @Serializable
@@ -137,7 +107,7 @@ data class TranscriptSegmentListRenderer(
 )
 
 @Serializable
-data class TranscriptSegmentWrapper( // 새로운 클래스명 (기존 TranscriptSegmentRenderer에 해당)
+data class TranscriptSegmentWrapper(
     val transcriptSegmentRenderer: TranscriptSegmentRenderer? = null
 )
 
@@ -168,7 +138,7 @@ data class SimpleText(
 )
 
 @Serializable
-data class AccessibilityContainer( // 새로운 클래스명 (기존 Accessibility에 해당)
+data class AccessibilityContainer(
     val accessibilityData: AccessibilityData? = null
 )
 

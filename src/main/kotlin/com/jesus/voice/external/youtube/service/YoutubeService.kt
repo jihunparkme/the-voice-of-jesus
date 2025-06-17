@@ -31,7 +31,7 @@ class YoutubeService(
             val videoPage = youtubeClient.getVideoPage(videoId.id).getOrThrow()
             val transcriptParam = extractTranscriptParam(videoId.id, videoPage)
             val transcriptJson = youtubeClient.getTranscriptV2(transcriptParam).getOrThrow()
-            // TranscriptExtractor.extractTranscript(transcriptJson)
+            TranscriptExtractor.extractJsonTranscript(transcriptJson)
         }.onFailure {
             throw YoutubeServiceException("동영상 자막 추출에 실패하였습니다. videoId: $videoId", it)
         }.getOrDefault("")
