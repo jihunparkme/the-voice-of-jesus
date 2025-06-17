@@ -35,6 +35,7 @@ class KtorClient : DisposableBean {
             json(Json {
                 prettyPrint = true
                 ignoreUnknownKeys = true
+                encodeDefaults = true
             })
             xml()
         }
