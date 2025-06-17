@@ -55,7 +55,7 @@ class SermonExtractService(
 
     private fun generateSermon(playListVideo: PlayListVideo, channel: PlayListChannel): Sermon {
         val transcript = runCatching {
-            youtubeService.getTranscript(VideoId(playListVideo.videoId))
+            youtubeService.getTranscriptV2(VideoId(playListVideo.videoId))
         }.getOrDefault("")
         if (transcript.isBlank()) {
             return playListVideo.toSermon(

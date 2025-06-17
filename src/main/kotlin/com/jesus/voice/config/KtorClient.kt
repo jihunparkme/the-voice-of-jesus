@@ -42,6 +42,7 @@ class KtorClient : DisposableBean {
 
         install(Logging) { // 요청 및 응답 로그 플러그인
             level = LogLevel.INFO
+            // level = LogLevel.BODY
         }
 
         install(DefaultRequest) { // 모든 요청에 기본적으로 포함될 헤더
