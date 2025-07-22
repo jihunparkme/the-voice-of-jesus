@@ -4,11 +4,9 @@ import com.jesus.voice.aggregate.sermon.service.SermonExtractService
 import com.jesus.voice.common.dtos.AYMCPlayList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.springframework.context.annotation.Profile
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
-@Profile("local | beta")
 @Component
 class SermonVideoExtractor(
     private val sermonExtractService: SermonExtractService,
