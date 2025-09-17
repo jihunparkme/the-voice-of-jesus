@@ -50,7 +50,7 @@ class KtorClient : DisposableBean {
         }
 
         install(HttpTimeout) { // 요청 타임아웃
-            requestTimeoutMillis = 30_000
+            requestTimeoutMillis = 60_000
         }
 
         install(HttpRequestRetry) { // 요청 실패 시 재시도
