@@ -34,6 +34,7 @@ val jsoup = project.findProperty("jsoup")
 val fasterxml = project.findProperty("fasterxml")
 val kotlinLogging = project.findProperty("kotlin.logging")
 val komoran = project.findProperty("komoran")
+val genai = project.findProperty("genai")
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
@@ -60,6 +61,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$fasterxml")
 	implementation("io.github.microutils:kotlin-logging-jvm:$kotlinLogging")
 	implementation("com.github.shin285:KOMORAN:$komoran")
+	implementation("com.google.genai:google-genai:$genai")
 	compileOnly("org.springframework.boot:spring-boot-devtools")
 
 	// ---------------------------------- TEST
