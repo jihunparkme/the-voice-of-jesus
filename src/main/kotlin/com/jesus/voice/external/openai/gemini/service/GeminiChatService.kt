@@ -32,6 +32,7 @@ class GeminiChatService(
         }.getOrDefault(text)
 
     companion object {
+        // https://aistudio.google.com/
         // https://ai.google.dev/gemini-api/docs/models?hl=ko#model-versions
         private const val MODEL_NAME = "gemini-flash-latest"
     }
